@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operational Procedures — Airline Revision Sheet</title>
+<style>
+  :root {
+    --purple: #0d3b6e;
+    --purple-light: #1a5fa8;
+    --purple-pale: #e8f1fb;
+    --accent: #cde3f7;
+    --green: #0e7a4a;
+    --red: #c0392b;
+    --orange: #1a6ea8;
+    --blue: #1a5276;
+    --gold: #2980b9;
+    --gray: #f0f5fb;
+    --border: #b8d0e8;
+    --text: #0d1f2d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: var(--text); background: #fff; }
+
+  /* ── TOP HEADER ── */
+  .main-header {
+    background: var(--purple);
+    color: white;
+    padding: 18px 30px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .main-header h1 { font-size: 22px; letter-spacing: 1px; }
+  .main-header .subtitle { font-size: 12px; opacity: 0.8; margin-top: 4px; }
+  .main-header .badge { background: #7ec8e3; color: #0a2d55; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 12px; }
+
+  /* ── NAV BAR ── */
+  .nav {
+    background: #0a2d55;
+    padding: 0 20px;
+    display: flex; flex-wrap: wrap; gap: 2px;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    padding: 10px 14px; font-size: 11.5px; font-weight: 600;
+    border-bottom: 3px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .nav a:hover { color: white; border-bottom-color: #7ec8e3; background: rgba(255,255,255,0.08); }
+
+  /* ── CONTENT ── */
+  .container { max-width: 1280px; margin: 0 auto; padding: 24px 20px; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 36px; }
+  .section-header {
+    background: var(--purple);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px 8px 0 0;
+    font-size: 15px; font-weight: 700; letter-spacing: 0.5px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-body {
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 16px;
+    background: #fff;
+  }
+
+  /* ── GRID LAYOUT ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .span-2 { grid-column: span 2; }
+  .span-3 { grid-column: span 3; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--gray);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 12px 14px;
+  }
+  .card-title {
+    font-weight: 700; font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--purple);
+    border-bottom: 2px solid var(--purple);
+    padding-bottom: 5px; margin-bottom: 8px;
+  }
+  .card ul { padding-left: 16px; }
+  .card li { margin-bottom: 3px; line-height: 1.5; }
+  .card p { margin-bottom: 5px; line-height: 1.5; }
+
+  /* ── HIGHLIGHT CARD ── */
+  .card.highlight { background: var(--purple-pale); border-color: var(--purple-light); }
+  .card.highlight .card-title { color: var(--purple); border-color: var(--purple); }
+
+  /* ── ALERT BOXES ── */
+  .alert { border-radius: 6px; padding: 8px 12px; margin-bottom: 6px; font-size: 12px; font-weight: 600; }
+  .alert-red { background: #fdecea; border-left: 4px solid var(--red); color: var(--red); }
+  .alert-green { background: #eafaf1; border-left: 4px solid var(--green); color: var(--green); }
+  .alert-blue { background: #e8f4fd; border-left: 4px solid var(--blue); color: var(--blue); }
+  .alert-gold { background: #ddeeff; border-left: 4px solid #2980b9; color: #0a2d55; }
+
+  /* ── TABLES ── */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+  th { background: var(--purple); color: white; padding: 6px 8px; text-align: center; font-size: 11px; }
+  td { padding: 5px 8px; border: 1px solid #ddd; text-align: center; }
+  tr:nth-child(even) td { background: #f8f5fb; }
+  td.label { text-align: left; font-weight: 600; background: #f0e8f8; }
+  .table-caption { font-size: 11px; color: #666; margin-top: 4px; font-style: italic; }
+
+  /* ── INLINE TAGS ── */
+  .tag { display: inline-block; padding: 1px 6px; border-radius: 10px; font-size: 11px; font-weight: 700; margin: 1px; }
+  .tag-red { background: #fdecea; color: var(--red); }
+  .tag-green { background: #eafaf1; color: var(--green); }
+  .tag-blue { background: #e8f4fd; color: var(--blue); }
+  .tag-purple { background: var(--accent); color: var(--purple); }
+  .tag-gold { background: #ddeeff; color: #0a2d55; }
+
+  /* ── HIGHLIGHT TEXT ── */
+  .hl { font-weight: 700; color: var(--purple); }
+  .hl-red { font-weight: 700; color: var(--red); }
+  .hl-green { font-weight: 700; color: var(--green); }
+  .hl-blue { font-weight: 700; color: var(--blue); }
+  .hl-gold { font-weight: 700; color: #1a6ea8; }
+
+  /* ── TWO-COL TEXT ── */
+  .two-col { columns: 2; column-gap: 20px; }
+  .two-col li { break-inside: avoid; }
+
+  /* ── SEPARATOR ── */
+  hr.sep { border: none; border-top: 2px solid var(--purple-pale); margin: 12px 0; }
+
+  /* ── FORMULA BOX ── */
+  .formula {
+    background: #0a2d55; color: #aee0f8;
+    border-radius: 6px; padding: 8px 14px;
+    font-family: 'Courier New', monospace; font-size: 13px;
+    margin: 6px 0;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .nav { display: none; }
+    .section { page-break-inside: avoid; }
+    body { font-size: 11px; }
+  }
+
+  /* ── SCROLL TARGET OFFSET ── */
+  .anchor { scroll-margin-top: 45px; }
+</style>
+</head>
+<body>
+
+<div class="main-header">
+  <div>
+    <div class="subtitle">ATPL Airline Selection Preparation</div>
+    <h1>✈ OPERATIONAL PROCEDURES — Revision Sheet</h1>
+    <div class="subtitle">Sources: Oxford CAE 070 OP · EASA EU 965/2012 Part-CAT · OPS Notes & Summary</div>
+  </div>
+  <div class="badge">Edition 1.0 — May 2026</div>
+</div>
+
+<nav class="nav">
+  <a href="#intro">Intro & Definitions</a>
+  <a href="#equipment">Equipment</a>
+  <a href="#oxygen">Oxygen</a>
+  <a href="#survival">Survival & Safety</a>
+  <a href="#crew">Crew Requirements</a>
+  <a href="#fdl">FDL & Rest</a>
+  <a href="#planning">Pre-flight Planning</a>
+  <a href="#minima">Operating Minima</a>
+  <a href="#lvo">LVO</a>
+  <a href="#fuel">Fuel Policy</a>
+  <a href="#etops">ETOPS</a>
+  <a href="#nat">NAT / RVSM</a>
+  <a href="#special">Special Ops</a>
+  <a href="#emergency">Emergencies</a>
+  <a href="#dg">Dangerous Goods</a>
+  <a href="#numbers">Key Numbers</a>
+  <a href="#flightplanning">Flight Planning</a>
+</nav>
+
+<div class="container">
+
+<!-- ═══════════════════ 1. INTRO & DEFINITIONS ═══════════════════ -->
+<div class="section anchor" id="intro">
+  <div class="section-header">📋 1 — Introduction, Definitions & Regulatory Framework</div>
+  <div class="section-body">
+    <div class="grid-3">
+
+      <div class="card highlight">
+        <div class="card-title">Key Definitions</div>
+        <ul>
+          <li><span class="hl">MOPSC</span> — Maximum Operational Passenger Seating Configuration</li>
+          <li><span class="hl">MCTOM</span> — Maximum Certified Take-Off Mass</li>
+          <li><span class="hl">Commercial Air Transport</span> — Transporting passengers/cargo/mail for remuneration or other valuable consideration</li>
+          <li><span class="hl">Flight Time</span> — Brakes OFF → Brakes ON</li>
+          <li><span class="hl">FDP</span> — Report time (pre-flight) to end of post-flight duties</li>
+          <li><span class="hl">Critical Phases of Flight</span> — T/O, climb-out, final approach, landing; any time Commander decides</li>
+          <li><span class="hl">OEI</span> — One Engine Inoperative</li>
+          <li><span class="hl">AEO</span> — All Engines Operative</li>
+          <li><span class="hl">Isolated Aerodrome</span> — Has no destination alternate</li>
+          <li><span class="hl">Equivalent Position</span> — Suitable fix 3–5 nm from threshold</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Operations Manual Structure</div>
+        <ul>
+          <li><span class="hl-blue">Part A</span> — General / Basic (Company-wide)</li>
+          <li><span class="hl-blue">Part B</span> — Type Specific</li>
+          <li><span class="hl-blue">Part C</span> — Aerodromes and Routes</li>
+          <li><span class="hl-blue">Part D</span> — Training</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">EU Ops Regulation Structure</div>
+        <ul>
+          <li><b>I</b> — Definitions</li>
+          <li><b>II — ARO</b> — Authority Requirements</li>
+          <li><b>III — ORO</b> — Operator/Organisation Requirements</li>
+          <li><b>IV — CAT</b> — Commercial Air Transport</li>
+          <li><b>V — SPA</b> — Specific Approvals (ETOPS, LVO etc.)</li>
+        </ul>
+        <hr class="sep">
+        <div class="alert alert-gold">Ops Manual must be followed except in emergencies. PIC is responsible.</div>
+        <div class="alert alert-blue">Prepared in English; crew must receive Parts A & B for personal study.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Alternate Types</div>
+        <ul>
+          <li><span class="hl">Take-off Alternate</span> — Cannot return to departure aerodrome</li>
+          <li><span class="hl">Destination Alternate</span> — Destination is unusable</li>
+          <li><span class="hl">En-route Alternate (ERA)</span> — For in-flight emergencies</li>
+          <li><span class="hl">ETOPS Alternate</span> — For ETOPS emergencies</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">AOC & Management</div>
+        <ul>
+          <li>AOC granted by NAA; allows CAT operations</li>
+          <li>An accident does <span class="hl-red">NOT</span> automatically revoke the AOC</li>
+          <li>Required post holders: Flight Ops, Maintenance, Crew Training, Ground Ops</li>
+          <li><span class="hl">&gt;21 employees</span> = Complex Company</li>
+          <li>Safety Management System (SMS): Recommended MCTOM &gt;20,000kg; <span class="hl-red">Mandatory</span> MCTOM &gt;27,000kg</li>
+          <li>FDM Program required if MCTOM &gt;27,000kg</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Leasing</div>
+        <ul>
+          <li><span class="hl">Dry Lease</span> — No crew; operated under AOC of <em>lessee</em>. Dry lease-in ≤ 7 months in any 12 consecutive month period (non-EU)</li>
+          <li><span class="hl">Wet Lease</span> — Crew provided; operated under AOC of <em>lessor</em></li>
+        </ul>
+      </div>
+
+    </div><!-- end grid -->
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">MEL vs MMEL</div>
+        <ul>
+          <li><span class="hl">MMEL</span> — Made by manufacturer; always <span class="hl-green">less restrictive</span> than MEL; approved by Manufacturer's State Authority</li>
+          <li><span class="hl">MEL</span> — Written by operator; approved by operator's State Authority; found in Ops Manual Part B; only relevant <span class="hl-red">stationary prior to departure</span></li>
+          <li>MEL must reflect MMEL changes within <span class="hl">90 days</span></li>
+          <li>Operations outside MEL: authority approval required</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">MEL Rectification Intervals</div>
+        <table>
+          <tr><th>Category</th><th>Repair Period</th></tr>
+          <tr><td class="label">A</td><td>As specified in Remarks/Exceptions</td></tr>
+          <tr><td class="label">B</td><td>3 consecutive days</td></tr>
+          <tr><td class="label">C</td><td>10 consecutive days</td></tr>
+          <tr><td class="label">D</td><td>120 consecutive days</td></tr>
+        </table>
+        <div class="table-caption">Starts at midnight that night; expires 1 minute after midnight on the last day.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Paperwork Required on Board</div>
+        <div class="two-col">
+          <ul>
+            <li>Certificate of Registration</li>
+            <li>Certificate of Airworthiness</li>
+            <li>Noise Certification</li>
+            <li>AOC</li>
+            <li>Aircraft Radio Licence</li>
+            <li>Third-Party Liability Insurance</li>
+            <li>Valid Flight Crew Licences</li>
+          </ul>
+        </div>
+        <hr class="sep">
+        <div class="card-title">Copies to Keep on Ground</div>
+        <ul>
+          <li><b>M</b>ass and Balance</li>
+          <li><b>O</b>perational Flight Plan</li>
+          <li><b>N</b>OTAMs</li>
+          <li><b>S</b>pecial Loads</li>
+          <li><b>T</b>ech Log</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Occurrence Reporting</div>
+        <ul>
+          <li>Safety hazard, ACAS advisory, unlawful interference, air traffic incident → <span class="hl-red">Immediately</span> to Authority of State of Operator</li>
+          <li>All other occurrences → within <span class="hl">72 hours</span></li>
+          <li>Ramp inspections: within a reasonable period (10 days)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">ICAO Annex List (Key Annexes)</div>
+        <div class="two-col">
+          <ul>
+            <li><b>1</b> — Personnel Licensing</li>
+            <li><b>2</b> — Rules of the Air</li>
+            <li><b>6</b> — Operation of Aircraft</li>
+            <li><b>7</b> — Registration Marks</li>
+            <li><b>9</b> — Facilitation</li>
+            <li><b>11</b> — ATS</li>
+            <li><b>14</b> — Aerodromes</li>
+            <li><b>17</b> — Security</li>
+            <li><b>18</b> — Safe Transport of DG</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Document Storage Periods</div>
+        <table>
+          <tr><th>Document</th><th>Retention</th></tr>
+          <tr><td class="label">Tech Log</td><td>36 months (3 years)</td></tr>
+          <tr><td class="label">Flight Prep Forms / OFP / M&B / DG</td><td>3 months</td></tr>
+          <tr><td class="label">FDL Records (flight crew)</td><td>15 months</td></tr>
+          <tr><td class="label">Recent Experience</td><td>15 months</td></tr>
+          <tr><td class="label">Training Records</td><td>3 years</td></tr>
+          <tr><td class="label">Crew Duty/Rest Records</td><td>24 months</td></tr>
+          <tr><td class="label">Quality System Reports</td><td>5 years</td></tr>
+          <tr><td class="label">Flight Crew Licences</td><td>Whilst valid</td></tr>
+          <tr><td class="label">FDR (after incident)</td><td>60 days</td></tr>
+          <tr><td class="label">Cabin Crew DG Records</td><td>3 years</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 2. EQUIPMENT ═══════════════════ -->
+<div class="section anchor" id="equipment">
+  <div class="section-header">🔧 2 — Aircraft Equipment Requirements</div>
+  <div class="section-body">
+
+    <div class="grid-3">
+      <div class="card highlight">
+        <div class="card-title">Navigation Lights</div>
+        <ul>
+          <li>Wing lights: <span class="hl-red">RED</span> (left) / <span class="hl-green">GREEN</span> (right) — <span class="hl">110°</span> arc each</li>
+          <li>Rear (white) light — <span class="hl">140°</span> arc</li>
+          <li>Required at <span class="hl">night</span> only; always <span class="hl">steady</span> (not flashing)</li>
+          <li>Anti-collision lights (strobes): required in addition</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">FDR / CVR Requirements</div>
+        <ul>
+          <li>Required: all aircraft &gt;5,700kg; all ME turbines with MOPSC &gt;9</li>
+          <li><span class="hl">CVR</span> — Records last <span class="hl-blue">2 hours</span> (30 min for &lt;5700kg / pre-1998)</li>
+          <li><span class="hl">FDR</span> — Records last <span class="hl-blue">25 hours</span> (10 hours if &gt;5700kg)</li>
+          <li>Both start before aircraft moves under own power</li>
+          <li>FDR retained for <span class="hl">60 days</span> after accident/incident</li>
+          <li>Datalink has same requirements as CVR</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">ELT</div>
+        <ul>
+          <li>Transmits on <span class="hl">121.5 MHz</span> and <span class="hl">406 MHz</span> simultaneously</li>
+          <li>Battery lasts <span class="hl">48 hours</span></li>
+          <li>MOPSC &lt;19 — 1 ELT of any type (post-2008: 1 automatic)</li>
+          <li>MOPSC &gt;19 — 1 automatic ELT or 2 of any type (post-2008: 2 ELTs, 1 auto)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Equipment Thresholds — Master Table</div>
+        <table>
+          <tr>
+            <th>Equipment</th>
+            <th>Turbojet</th>
+            <th>Turboprop</th>
+            <th>Notes</th>
+          </tr>
+          <tr><td class="label">Altitude Alert System</td><td>All</td><td>MCTOM &gt;5700kg OR MOPSC &gt;9</td><td>Alerts ±900ft approach, ±300ft deviation</td></tr>
+          <tr><td class="label">GPWS / TAWS</td><td colspan="2">MCTOM &gt;5700kg OR MOPSC &gt;9</td><td></td></tr>
+          <tr><td class="label">ACAS / TCAS</td><td colspan="2">MCTOM &gt;5700kg AND MOPSC &gt;19</td><td></td></tr>
+          <tr><td class="label">Radio Altimeter</td><td colspan="2">MCTOM &gt;2700kg</td><td></td></tr>
+          <tr><td class="label">AWR (Airborne Weather Radar)</td><td>All pressurised; or if thunderstorms expected</td><td>MCTOM &gt;5700kg OR MOPSC &gt;9 (unpressurised)</td><td></td></tr>
+          <tr><td class="label">2-Crew IFR/Night</td><td>All turbojets</td><td>Seating config &gt;9</td><td></td></tr>
+          <tr><td class="label">PA System</td><td colspan="2">MOPSC &gt;19</td><td>Operable within 10 secs; audible everywhere</td></tr>
+          <tr><td class="label">Crew Interphone</td><td colspan="2">MCTOM &gt;15,000kg AND MOPSC &gt;19 AND &gt;1 crew member</td><td></td></tr>
+          <tr><td class="label">Windscreen Wipers</td><td colspan="2">MCTOM &gt;5700kg</td><td></td></tr>
+          <tr><td class="label">Standby Attitude Indicator</td><td colspan="2">MCTOM &gt;5700kg OR MOPSC &gt;9</td><td>Must last 30 min</td></tr>
+          <tr><td class="label">Autopilot (Single Pilot IFR)</td><td colspan="2">Must include altitude & heading hold modes</td><td></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Fire Extinguishers (Handheld — Cabin)</div>
+        <table>
+          <tr><th>MOPSC / Seats</th><th>Extinguishers</th></tr>
+          <tr><td>7 – 30</td><td>1</td></tr>
+          <tr><td>31 – 60</td><td>2</td></tr>
+          <tr><td>61 – 200</td><td>3</td></tr>
+          <tr><td>201 – 300</td><td>4</td></tr>
+          <tr><td>301 – 400</td><td>5</td></tr>
+          <tr><td>401 – 500</td><td>6</td></tr>
+          <tr><td>501 – 600</td><td>7</td></tr>
+          <tr><td>601+</td><td>8</td></tr>
+        </table>
+        <div class="alert alert-gold" style="margin-top:8px">+ 1 BCF in the flight deck always</div>
+        <div class="alert alert-blue">Also: 1 per galley; 1 per cargo/baggage compartment</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">First Aid Kits</div>
+        <table>
+          <tr><th>MOPSC</th><th>Kits</th></tr>
+          <tr><td>0 – 100</td><td>1</td></tr>
+          <tr><td>101 – 200</td><td>2</td></tr>
+          <tr><td>201 – 300</td><td>3</td></tr>
+          <tr><td>301 – 400</td><td>4</td></tr>
+          <tr><td>401 – 500</td><td>5</td></tr>
+          <tr><td>501+</td><td>6</td></tr>
+        </table>
+        <div class="alert alert-gold" style="margin-top:8px">Min 1 per 100 seats; max 6 if &gt;500 seats. Must be readily accessible.</div>
+        <hr class="sep">
+        <div class="card-title">Emergency Medical Kit</div>
+        <ul>
+          <li>Required when MOPSC &gt;<span class="hl">30</span> AND &gt;<span class="hl">60 mins</span> from aerodrome with qualified medical assistance</li>
+          <li>Contains syringes, defibrillators, drugs</li>
+          <li>Kept secure in flight crew compartment</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Crash Axe / Crowbar</div>
+        <ul>
+          <li>Required: MCTOM &gt;5700kg OR MOPSC &gt;9 → <span class="hl">1 on flight deck</span></li>
+          <li>MOPSC &gt;200 → additional 1 in <span class="hl">rearmost galley</span></li>
+          <li>Crash axe can be substituted by a crowbar</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Megaphones</div>
+        <ul>
+          <li>MOPSC 61–99 = <span class="hl">1</span></li>
+          <li>MOPSC ≥100 = <span class="hl">2</span></li>
+          <li>No requirement if aircraft is empty</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Spare Fuses</div>
+        <ul>
+          <li>Greater of <span class="hl">10%</span> or <span class="hl">3</span> for each rating</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Seats</div>
+        <ul>
+          <li>Adult = 12+ years; Child = 2–12; Infant = &lt;2 (no own seat needed)</li>
+          <li>Must be aligned within <span class="hl">15°</span> of longitudinal axis</li>
+          <li>Child restraint device: &lt;24 months</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Emergency Lighting</div>
+        <ul>
+          <li>Required: MOPSC &gt;19</li>
+          <li>Must last minimum <span class="hl">10 minutes</span></li>
+          <li>Always <span class="hl">ARMED</span> in normal flight</li>
+          <li>General illumination + floor-level lighting + illuminated exit lights required if MOPSC &gt;9</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Emergency Slides / Evacuation</div>
+        <ul>
+          <li>Required when sill height &gt;<span class="hl">1.83m (6ft)</span></li>
+          <li>Pre-2000: tested with landing gear extended</li>
+          <li>Post-2000: tested with landing gear collapsed</li>
+          <li>Self-contained inflator; manual handle as backup</li>
+          <li>Slide will <span class="hl-red">NOT</span> inflate if opened from outside</li>
+          <li>Evacuation must be possible in <span class="hl">90 seconds</span> through 50% of exits</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">IFR & Night — Altimetry (2 Systems Required)</div>
+        <ul>
+          <li>2 sensitive pressure altimeters</li>
+          <li>2 independent static pressure systems (alternate static permitted for props &lt;5700kg)</li>
+          <li>Additional standby attitude indicator if MCTOM &gt;5700kg or MOPSC &gt;9 — must last 30 mins</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Radio & Navigation Equipment</div>
+        <ul>
+          <li>All comms equipment must be able to transmit on <span class="hl">121.5 MHz</span></li>
+          <li>VFR with visual references: min 1 radio + 1 transponder</li>
+          <li>IFR: 2 independent radios (each with own antenna) + headset/mic per pilot</li>
+          <li>IFR/VFR no visual refs: 1 VOR + 1 ADF + 1 DME (ADF omitted if not required)</li>
+          <li>VFR without landmarks: 1 VOR + 1 DME</li>
+          <li>ETOPS &gt;180 min: reliable comms (voice or data-link) required</li>
+          <li>1 equipment failure must not affect any other equipment</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 3. OXYGEN ═══════════════════ -->
+<div class="section anchor" id="oxygen">
+  <div class="section-header">💨 3 — Oxygen Requirements</div>
+  <div class="section-body">
+
+    <div class="alert alert-red" style="margin-bottom:12px">KEY: Quick-donning masks compulsory above 25,000 ft. Above FL410 one pilot must wear a mask. Cabin altitude warning at 10,000 ft. Oxygen drop-out masks deploy automatically at 15,000 ft.</div>
+
+    <div class="grid-2">
+      <div class="card highlight">
+        <div class="card-title">Supplemental Oxygen — Pressurised Aircraft</div>
+        <table>
+          <tr><th>Who</th><th>When (Cabin Altitude)</th><th>Minimum Supply</th></tr>
+          <tr>
+            <td class="label">Flight Crew</td>
+            <td>Total time &gt;13,000 ft<br><em>OR</em> (Total time – 30 min) at 10,000–13,000 ft</td>
+            <td>30 min (certified ≤25,000 ft)<br>2 hrs (certified &gt;25,000 ft)</td>
+          </tr>
+          <tr>
+            <td class="label">Cabin Crew</td>
+            <td>Total time &gt;13,000 ft<br><em>OR</em> (Total time – 30 min) at 10,000–13,000 ft</td>
+            <td>30 min</td>
+          </tr>
+          <tr>
+            <td class="label">100% of pax</td>
+            <td>Total time &gt;15,000 ft</td>
+            <td>10 min minimum</td>
+          </tr>
+          <tr>
+            <td class="label">30% of pax</td>
+            <td>Total time: 14,000–15,000 ft</td>
+            <td>N/A (no min duration)</td>
+          </tr>
+          <tr>
+            <td class="label">10% of pax</td>
+            <td>(Total time – 30 min) at 10,000–14,000 ft</td>
+            <td>N/A</td>
+          </tr>
+        </table>
+        <div class="alert alert-gold" style="margin-top:8px">Above FL410: At least 1 pilot must continuously wear oxygen mask</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Supplemental Oxygen — Unpressurised Aircraft</div>
+        <table>
+          <tr><th>Who</th><th>When (Pressure Altitude)</th></tr>
+          <tr><td class="label">Flight Crew</td><td>Entire time &gt;10,000 ft</td></tr>
+          <tr><td class="label">Cabin Crew</td><td>&gt;13,000 ft (entire time) OR 10,000–13,000 ft if &gt;30 min</td></tr>
+          <tr><td class="label">100% of pax</td><td>Total time &gt;13,000 ft</td></tr>
+          <tr><td class="label">10% of pax</td><td>(Total time – 30 min) at 10,000–13,000 ft</td></tr>
+        </table>
+        <hr class="sep">
+        <div class="card-title">First Aid (Therapeutic) Oxygen</div>
+        <ul>
+          <li>Required when operating <span class="hl-red">above 25,000 ft</span></li>
+          <li>Covers remainder of flight where cabin altitude is between 8,000 ft and 15,000 ft</li>
+          <li>Sufficient for <span class="hl">2% of passengers</span> carried, minimum for 1 pax</li>
+          <li>Minimum <span class="hl">2 dispensing units</span></li>
+          <li>Average flow rate: <span class="hl">3 litres/min STPD</span> (starts at 4, decreases to 2 min)</li>
+          <li>Total dispensing outlets must exceed seats by <span class="hl">10%</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Oxygen Mask Requirements</div>
+        <ul>
+          <li>110% of seating capacity: quick-donning masks above <span class="hl">25,000 ft</span></li>
+          <li>Above <span class="hl">FL410</span>: one pilot must continuously wear oxygen mask</li>
+          <li>Oxygen diluter-demand system: pure O₂ supply above <span class="hl">FL320</span></li>
+          <li>PBE (Protective Breathing Equipment): provides O₂ for &gt;<span class="hl">15 minutes</span></li>
+          <li>Utility: checked before taxi, demonstrated before take-off</li>
+          <li>Cabin altitude horn sounds at &gt;<span class="hl">10,000 ft</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Physiology Key Numbers</div>
+        <ul>
+          <li>Maximum cabin altitude for 100% O₂ efficiency: <span class="hl">8,000 ft</span></li>
+          <li>Pilot physically affected (lack of O₂): from <span class="hl">6,000 ft</span></li>
+          <li>Crew efficiency not impaired: up to <span class="hl">8,000 ft</span></li>
+          <li>TUC at FL400: approx. <span class="hl">12 seconds</span></li>
+          <li>Oxygen drop-out masks: auto-deploy at <span class="hl">15,000 ft</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 4. SURVIVAL & SAFETY EQUIPMENT ═══════════════════ -->
+<div class="section anchor" id="survival">
+  <div class="section-header">🦺 4 — Survival Equipment, Fire & Contaminated Runways</div>
+  <div class="section-body">
+    <div class="grid-3">
+
+      <div class="card highlight">
+        <div class="card-title">Life Jackets</div>
+        <ul>
+          <li>Required for landplane when &gt;<span class="hl">50 NM from shore</span> OR T/O &amp; landing gives likelihood of ditching</li>
+          <li>Sufficient for <span class="hl">all on board</span></li>
+          <li>Must have a <span class="hl">locator light</span></li>
+          <li>Inflated on <span class="hl">exiting</span> the aircraft (not inside)</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Life Rafts</div>
+        <ul>
+          <li>Required when &gt;<span class="hl">120 min</span> at OEI cruise speed or <span class="hl">400 nm</span> (lesser) from suitable land</li>
+          <li>Other aircraft: &gt;<span class="hl">30 min / 100 nm</span> (lesser)</li>
+          <li>Must assume largest raft is unserviceable → +1 spare of largest rated capacity</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Survival Equipment — Remote Areas</div>
+        <ul>
+          <li>Exception: within <span class="hl">90 minutes at cruising speed</span> of suitable landing area</li>
+          <li>Otherwise must carry:
+            <ul>
+              <li>Signalling equipment</li>
+              <li>At least <span class="hl">1 ELT</span></li>
+              <li>Additional survival equipment suitable for route</li>
+            </ul>
+          </li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Fire Categories & Extinguishers</div>
+        <table>
+          <tr><th>Cat</th><th>Type</th><th>Best Extinguisher</th></tr>
+          <tr><td>A</td><td>Solid</td><td>Water / CO₂/Halon</td></tr>
+          <tr><td>B</td><td>Liquid</td><td>Dry Powder / Foam</td></tr>
+          <tr><td>C</td><td>Gas</td><td>Dry Powder</td></tr>
+          <tr><td>D</td><td>Metal</td><td>Sand</td></tr>
+          <tr><td>E</td><td>Electrical</td><td>CO₂ (best)</td></tr>
+          <tr><td>F</td><td>Oil/Fat</td><td>Wet Chemical</td></tr>
+        </table>
+        <div class="alert alert-blue" style="margin-top:8px">Cockpit: Halon/CO₂ | Wheel-well: Dry Powder | Engine: Halon</div>
+        <div class="alert alert-red">Halon/CO₂: NOT metal fires. Water: NOT liquid/electrical/chemicals.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Runway Surface Definitions (EASA)</div>
+        <ul>
+          <li><span class="hl-green">Dry</span> — Neither wet nor contaminated; includes 'effectively dry' sections</li>
+          <li><span class="hl-blue">Damp</span> — Not dry but moisture doesn't give shiny appearance</li>
+          <li><span class="hl-gold">Wet</span> — Appears reflective (shiny) but no significant standing water</li>
+          <li><span class="hl-red">Contaminated</span> — ≥25% of runway surface covered by ≥3mm of water (or equivalent) in: slush, loose snow, compacted snow, or ice</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Braking Action Coefficients</div>
+        <table>
+          <tr><th>Coefficient</th><th>Braking Action</th><th>Code</th></tr>
+          <tr><td>≥ 0.40</td><td style="color:var(--green);font-weight:700">Good</td><td>5</td></tr>
+          <tr><td>0.36–0.39</td><td>Medium / Good</td><td>4</td></tr>
+          <tr><td>0.30–0.35</td><td>Medium</td><td>3</td></tr>
+          <tr><td>0.26–0.29</td><td>Medium / Poor</td><td>2</td></tr>
+          <tr><td>≤ 0.25</td><td style="color:var(--red);font-weight:700">Poor</td><td>1</td></tr>
+          <tr><td>—</td><td>Unreliable (Slush)</td><td>9</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Hydroplaning</div>
+        <div class="formula">Dynamic: Speed = 9√PSI &nbsp;|&nbsp; 34√BAR (rotating tyres)</div>
+        <div class="formula">Landing (non-rotating): Speed = 7.7√PSI</div>
+        <ul style="margin-top:8px">
+          <li><span class="hl">Dynamic</span> — Water deeper than tyre grooves; no braking action</li>
+          <li><span class="hl">Viscous</span> — Smooth dirty surface; usually at touchdown</li>
+          <li><span class="hl">Reverted Rubber Skids</span> — Tyre doesn't rotate; prevented by anti-skid</li>
+        </ul>
+        <div class="alert alert-gold" style="margin-top:8px">Technique: positive landing, max reverse, immediately on brakes. Approach speed should be increased.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">SNOWTAM</div>
+        <ul>
+          <li>Valid for <span class="hl">24 hours</span></li>
+          <li>Section D — Cleared runway length (4-figure group)</li>
+          <li>Section F — Deposits over total runway length (6 = slush)</li>
+          <li>Section H — Estimated surface friction on each third [5-4-3-2-1]</li>
+          <li>Section T — Plain language remarks (including uncleared parts)</li>
+          <li>2 figures = measured by device; 1 figure = estimated by pilot</li>
+          <li>Shiny appearance does <span class="hl-red">NOT</span> mean contaminated — requires ≥3mm + ≥25% coverage</li>
+          <li>Slush has the <span class="hl-red">lowest</span> friction coefficient</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 5. CREW REQUIREMENTS ═══════════════════ -->
+<div class="section anchor" id="crew">
+  <div class="section-header">👨‍✈️ 5 — Crew Requirements, Training & Recency</div>
+  <div class="section-body">
+    <div class="grid-3">
+
+      <div class="card highlight">
+        <div class="card-title">Flight Crew Composition</div>
+        <ul>
+          <li>Minimum <span class="hl">1 PIC</span> at all times</li>
+          <li>Minimum <span class="hl">2 flight crew</span> for IFR/night on turboprops with MOPSC &gt;9 or turbojets</li>
+          <li>Exception: approved single-pilot operations</li>
+          <li>Only <span class="hl">1 inexperienced</span> flight crew member at any time</li>
+          <li>≥1 suitably qualified pilot at controls during flight</li>
+          <li>Controlled rest permitted if Commander decides (not a qualifying rest)</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Cabin Crew Requirements</div>
+        <ul>
+          <li>Required when <span class="hl">MOPSC &gt;19</span></li>
+          <li>Minimum age: <span class="hl">18 years</span></li>
+          <li><span class="hl">1 cabin crew per 50 seats</span> (or fraction thereof) on same deck</li>
+          <li>Multiple types/variants: max <span class="hl">3 types</span> (4 with authority approval)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Senior Cabin Crew Requirements</div>
+        <ul>
+          <li>Minimum <span class="hl">12 months experience</span> (some sources: 1 year)</li>
+          <li>Must complete appropriate training course and skills test</li>
+          <li>Nominated by operator; responsible to Commander</li>
+          <li>May suspend non-safety tasks; may tell Commander to turn on seatbelt sign</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Training Validity Periods</div>
+        <table>
+          <tr><th>Check</th><th>Validity</th></tr>
+          <tr><td class="label">LPC (Licence Proficiency Check)</td><td>12 months</td></tr>
+          <tr><td class="label">OPC (Operator Proficiency Check)</td><td>6 months + remainder of month of issue</td></tr>
+          <tr><td class="label">Line Check</td><td>12 months + remainder of month</td></tr>
+          <tr><td class="label">Dangerous Goods</td><td>24 months</td></tr>
+          <tr><td class="label">Recurrent Training</td><td>12 months</td></tr>
+        </table>
+        <div class="alert alert-gold" style="margin-top:8px">Proficiency checks: 2 per year with &gt;4 months between them.</div>
+        <div class="alert alert-blue">Cannot fail LPC/OPC solely on CRM.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Recency Requirements</div>
+        <div class="card-title" style="color:var(--blue);border:none;margin-bottom:4px;text-transform:none;font-size:12px">Commander</div>
+        <ul>
+          <li>3 T/Os and 3 landings in last <span class="hl">90 days</span> on same type/class</li>
+          <li>1 night landing in last 90 days</li>
+          <li>Can be extended to <span class="hl">120 days</span> with a TRI</li>
+          <li>&gt;120 days → training flight or sim required</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title" style="color:var(--blue);border:none;margin-bottom:4px;text-transform:none;font-size:12px">Co-pilot</div>
+        <ul>
+          <li>3 T/Os and 3 landings in last <span class="hl">90 days</span> on same class/type (or sim)</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title" style="color:var(--blue);border:none;margin-bottom:4px;text-transform:none;font-size:12px">Single Pilot IFR</div>
+        <ul>
+          <li>5 IFR flights including 3 instrument approaches in last <span class="hl">90 days</span> in that type/class</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">ZFTT — Zero Flight Time Training</div>
+        <ul>
+          <li>Training conducted solely in the simulator</li>
+          <li>After ZFTT conversion, pilot must:
+            <ul>
+              <li>Commence supervised line flying within <span class="hl">21 days</span> of skills test</li>
+              <li>6 T/Os and landings in sim no later than 21 days after skills test</li>
+              <li>First 4 T/Os and landings on line under supervision</li>
+              <li>Sim and first T/Os with TRI in pilot's seat</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">OPC Content (must include)</div>
+        <ul>
+          <li>Rejected Take-Off</li>
+          <li>Engine failure between V₁ and V₂</li>
+          <li>3D approach with OEI</li>
+          <li>2D approach to minima</li>
+          <li>Missed approach (OEI if multi-engine)</li>
+          <li>Landing with OEI or PFL (single-engine)</li>
+          <li>LVO training: at least 4 approaches; includes taxi, T/O, approach, flare, landing, rollout, missed approach</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Crew Seat Belt & Harness Rules</div>
+        <ul>
+          <li>T/O &amp; Landing: <span class="hl">Belts + Harness</span></li>
+          <li>Other phases: Belts whilst at station</li>
+          <li>Pilots must be strapped in for T/O, landing, and whenever Commander decides</li>
+          <li>Safety belt always fastened while seated</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Recurrent Training — Emergency & Safety Equipment</div>
+        <ul>
+          <li>All exits, firefighting, pyrotechnics and slides: every <span class="hl">3 years</span></li>
+          <li>Life vests, extinguishers and PBE: every <span class="hl">year</span></li>
+          <li>CRM major topics: every <span class="hl">3 years</span></li>
+          <li>Can be revalidated up to <span class="hl">3 months early</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 6. FDL & REST ═══════════════════ -->
+<div class="section anchor" id="fdl">
+  <div class="section-header">⏱ 6 — Flight Duty & Rest Limitations</div>
+  <div class="section-body">
+    <div class="grid-3">
+
+      <div class="card highlight">
+        <div class="card-title">Key Definitions</div>
+        <ul>
+          <li><span class="hl">Duty</span> — Anything done for the operator (except post-flight activities)</li>
+          <li><span class="hl">FDP</span> — Report time to end of post-flight duties</li>
+          <li><span class="hl">Night Duty</span> — 02:00–04:59 in time zone crew are acclimatised to</li>
+          <li><span class="hl">WOCL</span> — Window of Circadian Low: 02:00–05:59 within 3 time zones of base</li>
+          <li><span class="hl">Standby</span> — Counts as duty if subsequently called in; Airport Standby always counts</li>
+          <li><span class="hl">Break</span> — Free of duties but does NOT count as rest period</li>
+          <li><span class="hl">Positioning</span> — Counts as flight duty</li>
+          <li><span class="hl">Home Base</span> — Where crew member usually starts/ends duty</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Duty Limits</div>
+        <table>
+          <tr><th>Period</th><th>Max Duty Hours</th></tr>
+          <tr><td>7 consecutive days</td><td class="hl">60 hours</td></tr>
+          <tr><td>14 consecutive days</td><td class="hl">110 hours</td></tr>
+          <tr><td>28 consecutive days</td><td class="hl">190 hours</td></tr>
+        </table>
+        <hr class="sep">
+        <div class="card-title">Flight Time Limits</div>
+        <table>
+          <tr><th>Period</th><th>Max Flight Hours</th></tr>
+          <tr><td>28 consecutive days</td><td class="hl">100 hours</td></tr>
+          <tr><td>Calendar year</td><td class="hl">900 hours</td></tr>
+          <tr><td>12 consecutive calendar months</td><td class="hl">1,000 hours</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">FDP & Rest Limits</div>
+        <ul>
+          <li>Maximum basic FDP: <span class="hl">13 hours</span></li>
+          <li>May be extended by <span class="hl">1 hour</span></li>
+          <li>Max 2 extensions in 7 consecutive days</li>
+          <li>Can be augmented with in-flight rest</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Rest Period Minimums</div>
+        <ul>
+          <li>At home base: <span class="hl">12 hours</span> minimum</li>
+          <li>Away from home base: <span class="hl">10 hours</span> (or enough for 8 hrs sleep)</li>
+          <li>Single Day Free of Duty: must include 2 local nights</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Unforeseen Circumstances</div>
+        <ul>
+          <li>Max <span class="hl">2 hours</span> discretion (3 hrs for augmented crew)</li>
+          <li>All crew must agree to enter discretion</li>
+          <li>Commander must report to operator if discretion &gt;1 hr within 28 days</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 7. PRE-FLIGHT PLANNING ═══════════════════ -->
+<div class="section anchor" id="planning">
+  <div class="section-header">📍 7 — Pre-flight Planning & Alternates</div>
+  <div class="section-body">
+    <div class="grid-2">
+
+      <div class="card highlight">
+        <div class="card-title">Take-off Alternate</div>
+        <ul>
+          <li>Required when impossible to return to departure aerodrome (weather or performance)</li>
+          <li><span class="hl">2-engine aircraft</span> — within <span class="hl">1 hour OEI</span> cruise speed</li>
+          <li><span class="hl">3/4-engine aircraft</span> — within <span class="hl">2 hours OEI</span> cruise speed</li>
+          <li>Wx: within planning minima ± 1 hr ETA</li>
+          <li>If no alternate available: conditions must be better than required for landing with available instrument approach (AEO)</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Isolated Aerodrome — When Applicable</div>
+        <ul>
+          <li>Piston: diversion fuel exceeds lesser of (45 min + 15% cruise flight time) or 2 hours</li>
+          <li>Jet: diversion fuel exceeds 2 hours normal cruise + final reserve</li>
+          <li>Additional fuel = 2 hours normal cruise consumption</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Destination Alternate</div>
+        <ul>
+          <li>Minimum <span class="hl">1 alternate IFR</span> unless:
+            <ul>
+              <li>Flight time &lt;6 hours AND 2+ separate runways with ceiling &gt;2,000 ft AAL or circling height +500 ft AND vis &gt;5 km ±1 hr ETA</li>
+              <li>OR aerodrome is isolated</li>
+            </ul>
+          </li>
+          <li><span class="hl">2 destination alternates</span> required when:
+            <ul>
+              <li>Wx below planning minima ±1 hr ETA</li>
+              <li>No met information available at destination</li>
+            </ul>
+          </li>
+          <li>Wx: within planning minima ± 1 hr ETA</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">ETOPS Alternate</div>
+        <ul>
+          <li>Wx: within planning minima ± 1 hr ETA</li>
+          <li>At expected time of use must have: ATS facility + at least 1 instrument approach procedure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Planning Minima Tables</div>
+        <div class="grid-3">
+          <div>
+            <b>Take-off Alternate &amp; Destination</b>
+            <table style="margin-top:6px">
+              <tr><th>Approach Type</th><th>VIS/RVR</th><th>Ceiling</th></tr>
+              <tr><td>CAT I / II / III</td><td>✓</td><td>—</td></tr>
+              <tr><td>NPA</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Circling</td><td>✓</td><td>✓</td></tr>
+            </table>
+          </div>
+          <div>
+            <b>Destination / ERA / Isolated AD</b>
+            <table style="margin-top:6px">
+              <tr><th>Approach Type</th><th>Planning Minima</th></tr>
+              <tr><td>CAT II / III</td><td>CAT I</td></tr>
+              <tr><td>CAT I</td><td>NPA RVR + ceiling ≥ MDH</td></tr>
+              <tr><td>NPA</td><td>+1,000m VIS / MDH +200 ft</td></tr>
+              <tr><td>Circling</td><td>Circling minima</td></tr>
+            </table>
+          </div>
+          <div>
+            <b>ETOPS Alternate</b>
+            <table style="margin-top:6px">
+              <tr><th>Approach Type</th><th>VIS/RVR</th><th>Ceiling</th></tr>
+              <tr><td>Precision</td><td>+800 m</td><td>DA/H +200 ft</td></tr>
+              <tr><td>NPA / Circling</td><td>+1,500 m</td><td>MDA/H +400 ft</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">In-flight Minima — Continuation of Approach</div>
+        <div class="alert alert-blue">Approach can ALWAYS be commenced regardless of conditions.</div>
+        <ul style="margin-top:8px">
+          <li><b>DA/H &lt; 1,000 ft AAL:</b> Cannot continue below 1,000 ft AAL if RVR/VIS is below minima. If RVR drops after 1,000 ft AAL → can continue to DA/H or MDA/H. If visual parameters not met at DA/H → discontinue.</li>
+          <li><b>DA/H &gt; 1,000 ft AAL:</b> Cannot continue into final approach segment (OM). Same rule at DA/H — discontinue if visual parameters not met.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">RVR Reports & Landing Factors</div>
+        <ul>
+          <li>RVR reports issued when RVR falls below <span class="hl">1,500 m</span></li>
+          <li>TDZ RVR is the <span class="hl">controlling value</span></li>
+          <li>Midpoint minimum: <span class="hl">125 m</span></li>
+          <li>Stop end minimum: <span class="hl">75 m</span></li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">RVR to Visibility Conversion</div>
+        <table>
+          <tr><th>Lighting</th><th>Day</th><th>Night</th></tr>
+          <tr><td>High Intensity</td><td>1.5×</td><td>2×</td></tr>
+          <tr><td>Lit</td><td>1×</td><td>1.5×</td></tr>
+          <tr><td>Unlit</td><td>1×</td><td>—</td></tr>
+        </table>
+        <hr class="sep">
+        <div class="card-title">Planning Factors (Landing)</div>
+        <ul>
+          <li>Turbojet destination LDA factored by <span class="hl">0.6</span></li>
+          <li>Turbojet alternate LDA factored by <span class="hl">0.7</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 8. OPERATING MINIMA ═══════════════════ -->
+<div class="section anchor" id="minima">
+  <div class="section-header">🎯 8 — Aerodrome Operating Minima</div>
+  <div class="section-body">
+    <div class="grid-2">
+
+      <div class="card highlight">
+        <div class="card-title">CAT Operations — Precision Approach Minima</div>
+        <table>
+          <tr><th>CAT</th><th>DH</th><th>Guidance</th><th>RVR</th></tr>
+          <tr><td class="label">I</td><td>&gt;200 ft</td><td>200 ft</td><td>550 m</td></tr>
+          <tr><td class="label">II</td><td>&gt;100 ft</td><td>50 ft</td><td>300 m</td></tr>
+          <tr><td class="label">III A</td><td>&lt;100 ft</td><td>To runway</td><td>200 m</td></tr>
+          <tr><td class="label">III B (Fail-passive)</td><td>&lt;50 ft</td><td>Fail-Passive</td><td>150 m (125 m if DH&lt;50 ft)</td></tr>
+          <tr><td class="label">III B (Fail-operational)</td><td>&lt;50 ft or nil</td><td>Fail-Operational</td><td>75 m</td></tr>
+          <tr><td class="label">III C</td><td>None</td><td>To runway</td><td>No limit (ICAO: 0)</td></tr>
+        </table>
+        <div class="alert alert-red" style="margin-top:8px">LVO requirements: 2 qualified pilots + radio altimeter with callouts below 200 ft ATE + system to record success/failure of approach/autoland</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">NPA System Minima</div>
+        <table>
+          <tr><th>Facility</th><th>Lowest DH/MDH</th></tr>
+          <tr><td>ILS/MLS/GLS</td><td>200 ft</td></tr>
+          <tr><td>GNSS/SBAS/LPV</td><td>200 ft</td></tr>
+          <tr><td>GNSS (LNAV) / BARO-VNAV / LOC (LLZ only) / VOR/DME / SRA 0.5nm</td><td>250 ft</td></tr>
+          <tr><td>NDB/DME / VOR / SRA 1nm</td><td>300 ft</td></tr>
+          <tr><td>SRA &gt;2nm / NDB / VDF</td><td>350 ft</td></tr>
+        </table>
+        <div class="alert alert-gold" style="margin-top:8px">Ceiling is irrelevant for OPERATING minima. Back-beam approaches are NOT approved.</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Aircraft Categories (VAT = 1.3 × VS0)</div>
+        <table>
+          <tr><th>Category</th><th>VAT (IAS at Threshold)</th></tr>
+          <tr><td>A</td><td>&lt;91 kts</td></tr>
+          <tr><td>B</td><td>91–120 kts</td></tr>
+          <tr><td>C</td><td>121–140 kts</td></tr>
+          <tr><td>D</td><td>141–165 kts</td></tr>
+          <tr><td>E</td><td>166–210 kts</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">Circling Approach Minima</div>
+        <table>
+          <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+          <tr><td class="label">MDH (ft)</td><td>400</td><td>500</td><td>600</td><td>700</td></tr>
+          <tr><td class="label">Min Vis (m)</td><td>1,500</td><td>1,600</td><td>2,400</td><td>3,600</td></tr>
+          <tr><td class="label">Max Speed</td><td>100 kt</td><td>135 kt</td><td>180 kt</td><td>205 kt</td></tr>
+        </table>
+        <div class="card-title" style="margin-top:10px">Reduced Minima / LVTO Facilities</div>
+        <table>
+          <tr><th>Facilities</th><th>Min RVR</th><th>Cat D</th></tr>
+          <tr><td>Edge + Centreline Markings</td><td>250 m</td><td>300 m</td></tr>
+          <tr><td>Edge + Centreline Lights</td><td>200 m</td><td>250 m</td></tr>
+          <tr><td>Edge + Centreline + Multiple RVRs</td><td>150 m</td><td>200 m</td></tr>
+          <tr><td>HI Edge + Centreline + Multiple RVRs</td><td>125 m</td><td>150 m</td></tr>
+          <tr><td>Lateral Guidance</td><td colspan="2">75 m</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Approach Type — DA vs MDA Summary</div>
+        <table>
+          <tr><th>Approach Type</th><th>DA</th><th>DH</th><th>MDA</th><th>MDH</th></tr>
+          <tr><td class="label">Precision</td><td>MSL</td><td>Threshold</td><td>—</td><td>—</td></tr>
+          <tr><td class="label">NPA (CDFA)</td><td>MSL</td><td>Threshold</td><td>—</td><td>—</td></tr>
+          <tr><td class="label">Non-Precision</td><td>—</td><td>—</td><td>MSL</td><td>Aerodrome/Threshold*</td></tr>
+          <tr><td class="label">Circle to Land</td><td>—</td><td>—</td><td>MSL</td><td>Aerodrome</td></tr>
+        </table>
+        <div class="table-caption">*Threshold referenced when threshold &gt;7 ft below aerodrome elevation (EASA: 2m)</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Continuation of Approach — Visual References Required</div>
+        <div class="card-title" style="text-transform:none;font-size:12px;border:none;margin-bottom:4px">Below MDA (ILS CAT I):</div>
+        <ul>
+          <li>Approach lighting, runway threshold, PAPI, TDZ, runway edge lights</li>
+        </ul>
+        <div class="card-title" style="text-transform:none;font-size:12px;border:none;margin-bottom:4px">Below DA/H (LTS CAT I and II):</div>
+        <ul>
+          <li>3 consecutive: approach centreline, runway centreline, TDZ, runway edge lights</li>
+          <li>PLUS a lateral element of ground pattern</li>
+        </ul>
+        <div class="alert alert-blue" style="margin-top:8px">Minimum visual approach RVR = 800 m. Non-precision threshold RVR &gt;750 m.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 9. LVO ═══════════════════ -->
+<div class="section anchor" id="lvo">
+  <div class="section-header">🌫 9 — Low Visibility Operations (LVO)</div>
+  <div class="section-body">
+    <div class="grid-3">
+      <div class="card highlight">
+        <div class="card-title">Definitions</div>
+        <ul>
+          <li><span class="hl">LVP</span> — Low Visibility Procedures: anything less than CAT I ILS (not inclusive)</li>
+          <li><span class="hl">LVO</span> — Low Visibility Operations</li>
+          <li><span class="hl">LVTO</span> — Low Visibility Take-Off: RVR &lt;400 m</li>
+          <li><span class="hl">CDFA</span> — Continuous Descent Final Approach</li>
+          <li><span class="hl">SAp</span> — Stabilised Approach</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">LVTO Requirements</div>
+        <ul>
+          <li>LVTO: RVR &lt;<span class="hl">400 m</span></li>
+          <li>Cannot go below <span class="hl">150 m RVR</span> (Cat A, B, C) or <span class="hl">200 m</span> (Cat D) without authority approval</li>
+          <li>If no RVR reported: PIC may visually determine RVR</li>
+          <li>ME must be able to stop or continue safely to 1,500 ft after engine failure</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Restricted Conditions (NADP)</div>
+        <ul>
+          <li>Crosswind (inc. gusts) &gt;<span class="hl">15 kts</span></li>
+          <li>Tailwind (inc. gusts) &gt;<span class="hl">5 kts</span></li>
+          <li>Contaminated runway</li>
+          <li>Adverse weather (windshear etc.)</li>
+          <li>T/O — VIS &lt;1 NM; Landing — ceiling &lt;500 ft AGL</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">LVO Approval Requirements</div>
+        <ul>
+          <li>Operator establishes minima; not lower than State minima</li>
+          <li>For operator validation of DH ≥50 ft: at least 30 approaches/landings</li>
+          <li>For DH &lt;50 ft: at least 100 approaches/landings</li>
+          <li>Must be monitored; reports retained for 12 months</li>
+          <li>Training and checking syllabus approved by Authority</li>
+          <li>All flight crew members must be qualified and current</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 10. FUEL ═══════════════════ -->
+<div class="section anchor" id="fuel">
+  <div class="section-header">⛽ 10 — Fuel Policy</div>
+  <div class="section-body">
+    <div class="grid-3">
+      <div class="card highlight">
+        <div class="card-title">Fuel Components</div>
+        <ul>
+          <li><span class="hl">Taxi</span> fuel</li>
+          <li><span class="hl">Trip</span> fuel</li>
+          <li><span class="hl">Contingency</span> fuel</li>
+          <li><span class="hl">Alternate</span> fuel (not ETOPS)</li>
+          <li><span class="hl">Final Reserve</span> fuel</li>
+          <li><span class="hl">Extra</span> fuel (discretion of commander)</li>
+        </ul>
+        <div class="alert alert-red" style="margin-top:8px">Must land with Alternate + Final Reserve fuel or it is a FUEL EMERGENCY</div>
+        <div class="alert alert-blue">Crew responsible for in-flight re-planning of fuel</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Final Reserve Fuel</div>
+        <ul>
+          <li>Turbine (jets): <span class="hl">30 minutes</span> at holding speed at 1,500 ft above destination</li>
+          <li>Reciprocating (pistons): <span class="hl">45 minutes</span></li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Isolated Aerodrome Additional Fuel</div>
+        <ul>
+          <li><span class="hl">2 hours</span> normal cruise consumption (including final reserve)</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Fuel Jettison</div>
+        <ul>
+          <li>Must jettison sufficient fuel within <span class="hl">15 minutes</span></li>
+          <li>Should be above <span class="hl">FL060</span> if possible</li>
+          <li>Preferably over water, away from CBs, in a straight line</li>
+          <li>ATC clearance required</li>
+          <li>Jettison when unable to meet 2.7% climb gradient OEI or 3.2% AEO</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Refuelling with Passengers</div>
+        <ul>
+          <li>Permitted if operator authorised</li>
+          <li>Requires:
+            <ul>
+              <li>Qualified person on board with 2-way comms</li>
+              <li>Crew, staff and passengers warned</li>
+              <li>FSB signs OFF; No Smoking ON</li>
+              <li>Internal lights ON; minimum cabin crew on board</li>
+              <li>Emergency slides/exits clear</li>
+            </ul>
+          </li>
+          <li><span class="hl-red">Stop</span> if you smell fuel!</li>
+          <li><span class="hl-red">Prohibited</span> for wide-cut fuels / AVGAS</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 11. ETOPS ═══════════════════ -->
+<div class="section anchor" id="etops">
+  <div class="section-header">🌍 11 — ETOPS (Extended Range Twin-Engine Operations)</div>
+  <div class="section-body">
+    <div class="grid-3">
+      <div class="card highlight">
+        <div class="card-title">Non-ETOPS Limits</div>
+        <table>
+          <tr><th>Class</th><th>MCTOM / MOPSC</th><th>Max Diversion</th></tr>
+          <tr><td class="label">A (Large)</td><td>≥45,360 kg OR MOPSC ≥20</td><td>60 min OEI</td></tr>
+          <tr><td class="label">A (Small)</td><td>&lt;45,360 kg OR MOPSC &lt;20</td><td>120 min OEI</td></tr>
+          <tr><td class="label">B &amp; C</td><td>Any</td><td>120 min OEI or 300 nm</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">ETOPS Rules</div>
+        <ul>
+          <li>ETOPS approval: 60 min standard; 180 min rule for extended ETOPS</li>
+          <li>Beyond 180 min: reliable communication technology required (voice or data-link)</li>
+          <li>ETOPS alternate selected based on operator-approved diversion time or MEL (shortest)</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">ETOPS Alternate Planning Minima</div>
+        <table>
+          <tr><th>Approach</th><th>Ceiling</th><th>VIS/RVR</th></tr>
+          <tr><td>Precision</td><td>DA/H +200 ft</td><td>+800 m</td></tr>
+          <tr><td>NPA / Circling</td><td>MDA/H +400 ft</td><td>+1,500 m</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">ETOPS Alternate Requirements</div>
+        <ul>
+          <li>Wx: within planning minima ±1 hr ETA</li>
+          <li>Flight commenced when forecasts indicate conditions at or above planning minima at ETA or 1 hour later</li>
+          <li>At expected time of use must have:
+            <ul>
+              <li>ATS facility</li>
+              <li>At least 1 instrument approach procedure</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ 12. NAT / RVSM ═══════════════════ -->
+<div class="section anchor" id="nat">
+  <div class="section-header">🌐 12 — North Atlantic (NAT), MNPS & RVSM</div>
+  <div class="section-body">
+
+    <div class="grid-3">
+      <div class="card highlight">
+        <div class="card-title">MNPS Airspace</div>
+        <ul>
+          <li>Lateral: <span class="hl">27°N to 90°N</span></li>
+          <li>Vertical: <span class="hl">FL285–FL420</span> (RVSM levels available FL290–FL410)</li>
+          <li>Requires MNPS + RVSM approval</li>
+          <li>ATS Flight Plan Item 10: <span class="hl">X</span> = MNPS approved (next to S); <span class="hl">W</span> = RVSM approved</li>
+          <li>Class A airspace above FL55 / 2,000 ft AGL</li>
+          <li>Significant points every <span class="hl">10° longitude</span></li>
+          <li>Above 70°N: position reports every <span class="hl">20° longitude</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">MNPS Requirements</div>
+        <ul>
+          <li><span class="hl">2 LRNS</span> (Long Range Navigation Systems) for unrestricted operations: IRS / INS / GNSS</li>
+          <li>1 LRNS only: Blue Spruce/Tango routes (state approval required)</li>
+          <li>All nav equipment accessible from both seats</li>
+          <li>Group altimetry system: <span class="hl">±80 ft</span></li>
+          <li>Non-group altimetry system: <span class="hl">±200 ft</span></li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Mandatory IFR in NAT</div>
+        <ul>
+          <li>Above FL060 or 2,000 ft AGL (whichever greater)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">OTS — Organised Track System</div>
+        <table>
+          <tr><th></th><th>Flow</th><th>Cross 30°W</th></tr>
+          <tr><td class="label">Day</td><td>E→W (Westbound)</td><td>1130–1900 UTC</td></tr>
+          <tr><td class="label">Night</td><td>W→E (Eastbound)</td><td>0100–0800 UTC</td></tr>
+        </table>
+        <ul style="margin-top:8px">
+          <li>Day OTS published: <span class="hl">2200 UTC</span> by Shanwick</li>
+          <li>Night OTS published: <span class="hl">1400 UTC</span> by Gander</li>
+          <li>Aircraft on same track separated by <span class="hl">1,000 ft</span></li>
+          <li>Active based on timing at <span class="hl">30°W</span></li>
+          <li>PRM deadline Day: 1900 UTC; Night: 1000 UTC</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Oceanic Clearance</div>
+        <ul>
+          <li>Request <span class="hl">40 minutes</span> before entry point ETA</li>
+          <li>3 elements: Route (lateral) + Mach number (longitudinal) + Flight Level (vertical)</li>
+          <li>Report ETA changes of <span class="hl">3 mins or more</span> to ATC</li>
+          <li>Tolerance boundary window: <span class="hl">3 mins</span></li>
+          <li>Flight plans filed <span class="hl">3 hours</span> before EOBT</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">NAT Squawk</div>
+        <ul>
+          <li>Keep last assigned squawk for <span class="hl">30 min</span> after NAT entry</li>
+          <li>Then squawk <span class="hl">2000</span> with Mode A/C</li>
+          <li>SELCAL checked at/before MNPSA entry</li>
+          <li>Air-to-air VHF: <span class="hl">123.45 MHz</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Mach Number Separation</div>
+        <ul>
+          <li>Standard: <span class="hl">10 mins</span> (same Mach number same track)</li>
+          <li>Reduce by 1 min per 0.01 Mach faster (minimum: <span class="hl">5 mins</span>)</li>
+          <li>Turbojet: 15 min same track &amp; same Mach; 5 min absolute min</li>
+          <li>Turboprop: 20 min; 30 min in western NAT area</li>
+          <li>Lateral min: <span class="hl">60 nm</span> standard; 30 nm absolute minimum</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">SLOP — Strategic Lateral Offset</div>
+        <ul>
+          <li>Centreline, <span class="hl">1 nm right</span>, or <span class="hl">2 nm right</span></li>
+          <li><span class="hl-red">Never</span> to the left or beyond 2 nm</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">LRNS Failure Procedures</div>
+        <ul>
+          <li><b>Before boundary</b>: Avoid entry; use Blue Spruce/Tango routes</li>
+          <li><b>Once within OCA (1 LRNS)</b>: Prepare proposal, advise ATC, continue</li>
+          <li><b>Remaining LRNS failure</b>: Notify ATC immediately; attempt visual sightings; consider climbing/descending 500 ft; broadcast on 121.5/123.45</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Unable to Maintain Level</div>
+        <ul>
+          <li>Attempt re-clearance first</li>
+          <li>If not possible: offset by <span class="hl">15 nm</span> and change FL:
+            <ul>
+              <li>Below FL410: ±500 ft</li>
+              <li>Above FL410: ±1,000 ft</li>
+              <li>At FL410: +1,000 ft or –500 ft</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">RVSM Requirements & Tolerances</div>
+        <ul>
+          <li>1,000 ft separation between FL290 and FL410</li>
+          <li>2 altitude measurement systems + 1 altitude alerting + 1 automatic control + 1 SSR transponder</li>
+          <li>Pre-flight altimetry check: within <span class="hl">75 ft</span></li>
+          <li>In-flight: primary altimeters agree within <span class="hl">±200 ft</span> (max 1 hr intervals)</li>
+          <li>Error tolerance of assigned altitude: <span class="hl">±300 ft</span></li>
+          <li>Level-off: VS not exceeding <span class="hl">1,500 fpm</span> with 1,500 ft to go</li>
+          <li>Do not overshoot/undershoot by more than <span class="hl">150 ft</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Weather Deviation in MNPSA</div>
+        <ul>
+          <li>Deviations &gt;10 nm from track: must change FL by 300 ft</li>
+          <li><span class="hl">SAND — South Ascend, North Descend</span></li>
+          <li>Turn North → Descend 300 ft</li>
+          <li>Turn South → Climb 300 ft</li>
+          <li>Polar Track: horizontal magnetic component &lt;<span class="hl">6 micro-tesla</span></li>
+          <li>Above 65°N: nav aids referenced to True North</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Convergence & Departure Formulas</div>
+        <div class="formula">Earth Convergence = Ch.Long × sin(Mean Lat)</div>
+        <div class="formula">Conversion Angle = Ch.Long × sin(Mean Lat) / 2</div>
+        <div class="formula">Departure = Ch.Long × cos(Mean Lat)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 13. SPECIAL OPS ═══════════════════ -->
+<div class="section anchor" id="special">
+  <div class="section-header">❄️ 13 — Special Operational Procedures (Icing, NADP, Wake Turbulence)</div>
+  <div class="section-body">
+    <div class="grid-3">
+
+      <div class="card highlight">
+        <div class="card-title">Icing & Ground De-/Anti-icing</div>
+        <ul>
+          <li>Commander ensures critical surfaces free of ice/snow/slush/frost prior to T/O</li>
+          <li>Clean Aircraft Concept: ALL contamination removed (fuselage OK)</li>
+          <li>Icing most likely: <span class="hl">0°C to –10°C</span>; rare below –18°C</li>
+          <li>Can reduce lift by <span class="hl">30%</span> and increase drag by <span class="hl">40%</span></li>
+          <li>Forms on leading edges first</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">De/Anti-ice Fluid Types</div>
+        <ul>
+          <li>Type I — De-ice (Hot / pre-existing ice)</li>
+          <li>Type II — Anti-ice (Cold / preventative)</li>
+          <li>Type IV — Anti-ice (expensive)</li>
+        </ul>
+        <div class="alert alert-gold" style="margin-top:8px">Holdover time starts at beginning of LAST step. Must repeat if expired. Jet/prop wash washes off fluid — avoid.</div>
+        <div class="card-title" style="margin-top:10px">Precipitation Danger (Least → Most)</div>
+        <ol style="padding-left:16px;line-height:1.8">
+          <li>Frost</li><li>Freezing Fog</li><li>Snow</li>
+          <li>Freezing Drizzle</li><li>Freezing Rain</li><li>Rain-soaked Cold Wing</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="card-title">NADP — Noise Abatement Departure</div>
+        <ul>
+          <li>Active from <span class="hl">800 ft</span> (power reduction) to <span class="hl">3,000 ft</span></li>
+          <li><span class="hl">NADP 1</span> (Close-In): Climb at V₂ +10–20 kts; flaps retracted at 3,000 ft. Max 15° AOB.</li>
+          <li><span class="hl">NADP 2</span> (Distant): Flaps up &gt;800 ft. No simultaneous power reduction.</li>
+          <li>No turns at same time as power reduction</li>
+          <li>Min height for power reduction: <span class="hl">240 m (800 ft)</span></li>
+          <li>At least 500 ft above obstacles</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">NADP NOT Required When</div>
+        <ul>
+          <li>Runway contaminated</li>
+          <li>No ILS/VASI guidance</li>
+          <li>VIS &lt;1 NM</li>
+          <li>Crosswind &gt;15 kts / Tailwind &gt;5 kts</li>
+          <li>Windshear / adverse weather</li>
+          <li>Ceiling &lt;500 ft AGL</li>
+          <li>Aircraft failure</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Wake Turbulence</div>
+        <ul>
+          <li>Created when aircraft generates lift (nose wheel lifts off)</li>
+          <li>HEAVY: &gt;136,000 kg; MEDIUM: 7,001–135,999 kg; LIGHT: ≤7,000 kg</li>
+          <li>Vortices separate upward around tip and go outward from runway</li>
+          <li>Left = Clockwise; Right = Anti-clockwise</li>
+          <li>Travels horizontally at ½ wingspan height</li>
+          <li>Worst: heavy, clean, slow aircraft in light crosswinds</li>
+          <li>Avoid by flying above and upwind of preceding aircraft</li>
+          <li>Wake dissipation time: <span class="hl">3 minutes</span></li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Radar Wake Turbulence Separation</div>
+        <table>
+          <tr><th>Behind ↓ / Leading →</th><th>Heavy</th><th>Medium</th></tr>
+          <tr><td class="label">Heavy</td><td>4 nm</td><td>—</td></tr>
+          <tr><td class="label">Medium</td><td>5 nm</td><td>3 nm</td></tr>
+          <tr><td class="label">Light</td><td>6 nm</td><td>5 nm</td></tr>
+        </table>
+        <div class="table-caption">Non-radar: 3 min from intermediate departure / light behind medium/heavy. All other = 2 min.</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Windshear & Microbursts</div>
+        <ul>
+          <li>Windshear: rapid change in wind speed or direction</li>
+          <li>Vertical windshear → turbulence; horizontal → headwind/tailwind change</li>
+          <li><b>Microburst</b>: Downdraughts in 4 km area for 1–5 mins; high-pressure divergent centre; wind shifts from headwind to equal/opposite tailwind</li>
+        </ul>
+        <div class="card-title" style="margin-top:10px">Windshear Go-Around Procedure</div>
+        <ul>
+          <li>Aggressively apply <span class="hl">full throttle</span></li>
+          <li>Pitch up to <span class="hl">stick shaker</span></li>
+          <li><span class="hl-red">No</span> configuration changes (Speedbrake OK)</li>
+        </ul>
+        <div class="alert alert-gold" style="margin-top:8px">Headwind ↑ = Energy ↑ | Tailwind ↑ = Energy ↓</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Bird Strikes</div>
+        <ul>
+          <li>Highest risk: closest to ground (&lt;2,500 ft / &lt;1,500 ft)</li>
+          <li>Commander must submit written report after landing if bird struck</li>
+          <li>If seen near airport → report immediately to ATS</li>
+          <li>Most effective deterrents: bird distress calls + shell crackers</li>
+          <li>Migration info: AIP ENR 5.6</li>
+          <li>Attracted to: garbage sites, short grass, wet areas, coastal areas, ploughed fields</li>
+          <li>Deterrent: long grass (&gt;20 cm) on airfield</li>
+          <li>IBIS — ICAO Birdstrike Information System</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 14. EMERGENCIES ═══════════════════ -->
+<div class="section anchor" id="emergency">
+  <div class="section-header">🚨 14 — Emergency Procedures & Security</div>
+  <div class="section-body">
+    <div class="grid-3">
+
+      <div class="card highlight">
+        <div class="card-title">Decompression</div>
+        <ul>
+          <li>First sign of rapid decompression: <span class="hl-red">BANG!</span> followed by mist and cabin altitude increase</li>
+          <li>Slow decompression: caused by leaks</li>
+          <li>First action: <span class="hl-red">don oxygen mask immediately</span></li>
+          <li>Then emergency descent to <span class="hl">8,000 ft</span> (performance not affected) or MSA</li>
+          <li>O₂ degrades performance above 6,000 ft; pure O₂ required above FL320</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Smoke Procedure</div>
+        <ul>
+          <li>Immediately apply oxygen mask (100%)</li>
+          <li>Cabin crew attempt to determine source</li>
+          <li>If source cannot be determined → <span class="hl-red">divert</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Fire Management</div>
+        <ul>
+          <li>Always follow the checklist; always check with PBE (&gt;15 min O₂)</li>
+          <li>Fire after V₁ → Continue take-off</li>
+          <li>Carburettor fire → Mixture OFF, open throttle</li>
+          <li>Tailpipe fire → Dry cranking</li>
+          <li>Toilets → All available extinguishers simultaneously</li>
+          <li>Cargo → Isolate ventilation system</li>
+          <li>Engine → Halon; Cockpit → Halon/CO₂; Wheel-well → Dry powder</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Overheated Brakes</div>
+        <ul>
+          <li>Approach from front or rear</li>
+          <li>Do <span class="hl-red">NOT</span> set parking brake</li>
+          <li>Use water fog, sand or dry powder</li>
+          <li>Do <span class="hl-red">NOT</span> use water</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Ditching</div>
+        <ul>
+          <li>Immediately initiate evacuation</li>
+          <li>Life jackets inflated <span class="hl">on exiting</span> (not inside)</li>
+          <li>Ditch parallel and on top of waves (except for strong winds)</li>
+          <li>Gear up, flaps down, nose high</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Hijacking Response</div>
+        <ul>
+          <li>Flight deck door locks only from inside</li>
+          <li>Fly at IFR level: 1,000 ft sep → ±500 ft; 2,000 ft sep → ±1,000 ft</li>
+          <li>Attempt to broadcast warning on VHF / 121.5 MHz</li>
+          <li>State of Registry, State of Operator &amp; ICAO must be notified</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">Bomb on Board</div>
+        <ul>
+          <li>Descend to cabin altitude in landing configuration</li>
+          <li>Will not have to remove suspect packages</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">Emergency / Precautionary Landings</div>
+        <ul>
+          <li><span class="hl">Precautionary</span> — Land at earliest opportunity (bad weather, passenger incapacitation, onset of night, etc.)</li>
+          <li><span class="hl">Emergency</span> — Land immediately (uncontrolled fire, dual engine failure, etc.)</li>
+          <li>Safe Forced Landing: inevitable landing with no injuries expected</li>
+          <li>On runway: stop there and turn off systems</li>
+          <li>Over trees: aim for low trees, flaps down, gear up</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Security Definitions</div>
+        <ul>
+          <li><span class="hl">Airside</span> — Movement area of airport and buildings with controlled access</li>
+          <li><span class="hl">Screening</span> — Application of means to identify prohibited articles</li>
+          <li><span class="hl">Security Control</span> — Means to prevent introduction of prohibited articles</li>
+          <li><span class="hl">Security Restricted Area</span> — Airside risk-priority area with additional measures</li>
+          <li><span class="hl">Unidentified Baggage</span> — Baggage not picked up or identified by a passenger</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 15. DANGEROUS GOODS ═══════════════════ -->
+<div class="section anchor" id="dg">
+  <div class="section-header">⚠️ 15 — Dangerous Goods (DG)</div>
+  <div class="section-body">
+    <div class="grid-3">
+
+      <div class="card highlight">
+        <div class="card-title">Regulatory Basis</div>
+        <ul>
+          <li>ICAO Annex 18 — Safe Transport of DG</li>
+          <li>ICAO Technical Instructions Doc 9284 — Legal basis + list of DG</li>
+          <li>Emergency Response: Red book, pink pages</li>
+          <li>Authorization to carry DG: on the AOC</li>
+        </ul>
+        <hr class="sep">
+        <div class="card-title">DG Classes</div>
+        <ol style="padding-left:16px;line-height:1.8">
+          <li>Explosives</li>
+          <li>Gases</li>
+          <li>Flammable Liquids</li>
+          <li>Flammable Solids</li>
+          <li>Oxidizing Agents / Peroxides</li>
+          <li>Toxic / Infectious</li>
+          <li>Radioactive</li>
+          <li>Corrosive</li>
+          <li>Miscellaneous</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Responsibilities</div>
+        <ul>
+          <li><span class="hl">Shipper</span>: responsible for the DG; must provide "Dangerous Goods Transport Document" (2 copies, in English)</li>
+          <li><span class="hl">Operator</span>: checks for correct labelling; does NOT have to open and check; Acceptance Checklist completed by Operator/Handling Agent</li>
+          <li><span class="hl">PIC</span>: checks goods not damaged or leaking; if damaged → remove. Will be given NOTOC in English.</li>
+          <li>Incidents reported within <span class="hl">72 hours</span> to State of Operator and State of Occurrence</li>
+          <li>Non-declared goods found → report without delay</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Allowed / Not Allowed</div>
+        <ul>
+          <li>Safety matches: on oneself only</li>
+          <li>Batteries and small oxygen bottles: allowed</li>
+          <li>Fire extinguishers, portable O₂, self-inflating life jackets, first aid kits: all required DGs</li>
+          <li>Infected live animals: <span class="hl-red">NOT allowed</span></li>
+          <li>Some items: CAO (Cargo Aircraft Only)</li>
+          <li>Goods that would react with each other cannot be placed adjacent</li>
+          <li>DG accident = fatal/serious injury or major property damage</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="card-title">Load Notification (NOTOC) Columns</div>
+      <ul>
+        <li>1st Column — UN/ID Number (4-digit number assigned by UN)</li>
+        <li>2nd Column — Proper Shipping Name</li>
+        <li>3rd Column — Class</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ 16. KEY NUMBERS ═══════════════════ -->
+<div class="section anchor" id="numbers">
+  <div class="section-header">🔢 16 — Key Numbers & Quick Reference</div>
+  <div class="section-body">
+
+    <div class="grid-4">
+      <div class="card highlight">
+        <div class="card-title">Oxygen (ft)</div>
+        <ul>
+          <li>Quick-donning masks: &gt;25,000 ft</li>
+          <li>1 pilot on O₂: &gt;FL410</li>
+          <li>First Aid O₂: &gt;25,000 ft</li>
+          <li>110% masks req'd: &gt;25,000 ft</li>
+          <li>Pax O₂ drops out auto: 15,000 ft</li>
+          <li>Cabin altitude warning: 10,000 ft</li>
+          <li>100% eff: ≤8,000 ft</li>
+          <li>Pilot physically affected: 6,000 ft</li>
+          <li>PBE provides O₂: &gt;15 min</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Equipment Masses (kg)</div>
+        <ul>
+          <li>GPWS: &gt;5,700 &amp; MOPSC &gt;9</li>
+          <li>ACAS: &gt;5,700 &amp; MOPSC &gt;19</li>
+          <li>AWR: all pressurised</li>
+          <li>Wipers: &gt;5,700</li>
+          <li>RA: &gt;2,700</li>
+          <li>SMS mandatory: &gt;27,000</li>
+          <li>FDM required: &gt;27,000</li>
+          <li>Crash axe: &gt;5,700 OR MOPSC &gt;9</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Durations & Validity</div>
+        <ul>
+          <li>FDR: 25 hrs (10 if &gt;5,700kg)</li>
+          <li>CVR: 2 hrs (30 min pre-1998)</li>
+          <li>ELT battery: 48 hrs</li>
+          <li>SNOWTAM: 24 hrs</li>
+          <li>Emergency lighting: 10 min</li>
+          <li>OPC: 6 months</li>
+          <li>LPC / Line Check: 12 months</li>
+          <li>DG training: 24 months</li>
+          <li>Slides: 3 yrs (exit drills)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Crew Limits</div>
+        <ul>
+          <li>Max FDP: 13 hrs (+1 hr ext.)</li>
+          <li>Duty 7 days: 60 hrs</li>
+          <li>Duty 14 days: 110 hrs</li>
+          <li>Duty 28 days: 190 hrs</li>
+          <li>FT 28 days: 100 hrs</li>
+          <li>FT calendar year: 900 hrs</li>
+          <li>FT 12 months: 1,000 hrs</li>
+          <li>Rest home base: 12 hrs min</li>
+          <li>Rest away: 10 hrs min</li>
+          <li>Commander recency: 90 days</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-top:14px">
+      <div class="card">
+        <div class="card-title">NAT / RVSM Numbers</div>
+        <ul>
+          <li>MNPSA: FL285–420; 27–90°N</li>
+          <li>RVSM: FL290–410; 1,000 ft sep</li>
+          <li>Oceanic clearance: 40 min prior</li>
+          <li>ETA change report: ≥3 min</li>
+          <li>NAT squawk: 2000 (30 min after entry)</li>
+          <li>Air-to-air VHF: 123.45 MHz</li>
+          <li>SLOP: CL, 1nm R, 2nm R only</li>
+          <li>Altimeter pre-flight: ±75 ft</li>
+          <li>Altimeter in-flight: ±200 ft</li>
+          <li>Level deviation tolerance: ±300 ft</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Approach Minima (m / ft)</div>
+        <ul>
+          <li>CAT I: 200 ft / 550 m</li>
+          <li>CAT II: 100 ft / 300 m</li>
+          <li>CAT IIIA: &lt;100 ft / 200 m</li>
+          <li>CAT IIIB (FO): nil / 75 m</li>
+          <li>LVTO: &lt;400 m RVR</li>
+          <li>Circling Cat A: 400 ft / 1,500 m</li>
+          <li>Circling Cat D: 700 ft / 3,600 m</li>
+          <li>NDB min DH: 350 ft</li>
+          <li>VOR min DH: 300 ft</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Alternates & Planning</div>
+        <ul>
+          <li>TOF alternate 2E: 1 hr OEI</li>
+          <li>TOF alternate 3/4E: 2 hrs OEI</li>
+          <li>Dest alt wx window: ±1 hr ETA</li>
+          <li>No alt if FT &lt;6 hrs + 2 runways + Vis &gt;5km / ceil &gt;2000 ft</li>
+          <li>Jet isolated: 2 hrs cruise + final reserve</li>
+          <li>Final reserve jet: 30 min</li>
+          <li>Final reserve piston: 45 min</li>
+          <li>Fuel jettison: within 15 min</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Formulas</div>
+        <div class="formula">Hydroplaning (T/O): 9√PSI | 34√BAR</div>
+        <div class="formula">Hydroplaning (Landing): 7.7√PSI</div>
+        <div class="formula">Convergence = Ch.Long × sin(Mean Lat)</div>
+        <div class="formula">Conv.Angle = Convergence ÷ 2</div>
+        <div class="formula">Departure = Ch.Long × cos(Mean Lat)</div>
+        <div class="formula">VAT = 1.3 × VS0</div>
+        <div style="margin-top:6px;font-size:11px;color:#666">1 bar = 14.5 PSI</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  FLIGHT PLANNING FOR CAT OPERATIONS                            -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section anchor" id="flightplanning">
+  <div class="section-header">✈ Flight Planning for CAT Operations</div>
+
+  <!-- ── SUB-HEADER: FUEL PLANNING ── -->
+  <div style="background:var(--accent);border-left:5px solid var(--purple-light);padding:10px 18px;margin-bottom:20px;border-radius:4px;font-size:13px;font-weight:700;color:var(--purple);letter-spacing:0.5px;">
+    ⛽ FUEL PLANNING — CAT.OP.MPA.180 / 181 / 182 / 185 (EU 965/2012 as amended by Reg. 2021/1296)
+  </div>
+
+  <!-- ROW 1: Three Fuel Scheme Types -->
+  <div class="card-row">
+    <div class="card card-wide">
+      <div class="card-title">The Three Fuel/Energy Scheme Types — CAT.OP.MPA.180</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:8px">
+        <div style="background:var(--gray);border-radius:6px;padding:12px;border-top:3px solid #0e7a4a">
+          <div style="font-weight:700;color:#0e7a4a;margin-bottom:6px;font-size:12px">① BASIC FUEL SCHEME</div>
+          <div style="font-size:12px;line-height:1.8">Standard regulatory fuel quantities. Based on large-scale industry safety data. Applies to all CAT operators by default. Priority: <b>Safe → Effective → Efficient</b>.</div>
+          <div style="margin-top:8px;font-size:11px;background:#d4edda;padding:6px 8px;border-radius:4px">Used unless operator applies for a variation or individual scheme.</div>
+        </div>
+        <div style="background:var(--gray);border-radius:6px;padding:12px;border-top:3px solid #2980b9">
+          <div style="font-weight:700;color:#2980b9;margin-bottom:6px;font-size:12px">② BASIC + VARIATIONS</div>
+          <div style="font-size:12px;line-height:1.8">Basic scheme with approved statistical deviations (e.g. statistical taxi fuel, statistical contingency). Each variation must be approved by Competent Authority.</div>
+          <div style="margin-top:8px;font-size:11px;background:#ddeeff;padding:6px 8px;border-radius:4px">E.g. Statistical contingency fuel method, reduced planning minima.</div>
+        </div>
+        <div style="background:var(--gray);border-radius:6px;padding:12px;border-top:3px solid #c0392b">
+          <div style="font-weight:700;color:#c0392b;margin-bottom:6px;font-size:12px">③ INDIVIDUAL FUEL SCHEME</div>
+          <div style="font-size:12px;line-height:1.8">Operator-specific scheme based on minimum 2 years of own data. Must demonstrate equivalent or higher level of safety vs. basic scheme. Requires authority approval.</div>
+          <div style="margin-top:8px;font-size:11px;background:#fde8e8;padding:6px 8px;border-radius:4px">Uses SPIs (Safety Performance Indicators) to monitor safety levels continuously.</div>
+        </div>
+      </div>
+      <div class="alert-gold" style="margin-top:12px">All fuel schemes must comprise: (1) Fuel planning &amp; in-flight re-planning policy; (2) Aerodrome selection policy; (3) In-flight fuel management policy. Any change to the scheme requires prior CA approval.</div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Block Fuel Breakdown TTCAFED -->
+  <div class="card-row">
+    <div class="card" style="flex:2">
+      <div class="card-title">Pre-flight Fuel Calculation — Block Fuel = <span style="color:var(--gold);font-weight:800;font-size:14px">TTCAFED</span></div>
+      <table>
+        <thead><tr><th style="width:5%">Code</th><th style="width:18%">Component</th><th>Regulatory Definition (CAT.OP.MPA.181 — Basic Scheme, Perf Class A)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span style="font-size:16px;font-weight:800;color:var(--purple)">T</span></td>
+            <td><b>Taxi Fuel</b></td>
+            <td>Fuel expected to be used <b>prior to take-off only</b> (not arrival taxi). Must account for APU consumption, local conditions (LVP, CDM, NOTAMs, weather), and anticipated ground delays. Statistical taxi fuel permissible under basic + variations scheme.</td>
+          </tr>
+          <tr>
+            <td><span style="font-size:16px;font-weight:800;color:var(--purple)">T</span></td>
+            <td><b>Trip Fuel</b></td>
+            <td>From take-off to landing at destination. Must include: <b>(1)</b> climb to initial cruise level; <b>(2)</b> step climbs if applicable; <b>(3)</b> cruise; <b>(4)</b> descent to IAF; <b>(5)</b> approach and landing. For STAR with point merge, include fuel for the direct STAR path. Planned using aircraft-specific fuel consumption data (from FMS/monitoring system) preferred over manufacturer data.</td>
+          </tr>
+          <tr>
+            <td><span style="font-size:16px;font-weight:800;color:var(--purple)">C</span></td>
+            <td><b>Contingency Fuel</b></td>
+            <td><b>Higher of:</b><br>
+              • <b>5%</b> of trip fuel (or 5% of remaining trip fuel if in-flight re-planning), OR<br>
+              • <b>5 minutes</b> holding at 1,500 ft above destination in ISA, at holding speed, at estimated arrival mass.<br>
+              <b>Reducible to 3%</b> under basic + variations scheme if a <b>Fuel ERA aerodrome</b> is nominated: must lie within a circle of radius = 20% of total route distance, centred at 25% of total distance from destination (minimum 20% + 50 NM from destination).</td>
+          </tr>
+          <tr>
+            <td><span style="font-size:16px;font-weight:800;color:var(--purple)">A</span></td>
+            <td><b>Alternate Fuel</b></td>
+            <td>Fuel for: <b>(1)</b> missed approach from DA/H or MDA/H at destination (full missed approach procedure); <b>(2)</b> climb to cruise level; <b>(3)</b> cruise to alternate; <b>(4)</b> descent; <b>(5)</b> approach and landing at alternate. If <b>2 alternates required</b>: use the one requiring more fuel. Does NOT include a missed approach at the alternate itself.</td>
+          </tr>
+          <tr>
+            <td><span style="font-size:16px;font-weight:800;color:var(--purple)">F</span></td>
+            <td><b>Final Reserve Fuel (FRF)</b></td>
+            <td>Holding at 1,500 ft (450 m) above alternate (or destination if no alternate) in ISA, at holding speed, at estimated arrival mass:<br>
+              • <b>Turbine engines:</b> 30 minutes<br>
+              • <b>Reciprocating engines:</b> 45 minutes<br>
+              <b>FRF is inviolable.</b> If FRF would be consumed → declare MAYDAY FUEL. If any change to clearance risks consuming FRF → declare MINIMUM FUEL.</td>
+          </tr>
+          <tr>
+            <td><span style="font-size:16px;font-weight:800;color:var(--purple)">E</span></td>
+            <td><b>Additional Fuel</b></td>
+            <td>Required when minimum fuel (T+T+C+A+F) is insufficient to reach a <b>Fuel ERA aerodrome</b> following engine failure or loss of pressurisation at the most critical point on route. Must allow: driftdown to ERA, hold 15 minutes at 1,500 ft above ERA, approach and land.</td>
+          </tr>
+          <tr>
+            <td><span style="font-size:16px;font-weight:800;color:var(--purple)">E</span></td>
+            <td><b>Extra Fuel</b></td>
+            <td>For anticipated delays or specific operational constraints that can be predicted at planning stage. Included at PIC's discretion for comfort margin (e.g. forecast holds, busy terminal, unreliable routing).</td>
+          </tr>
+          <tr>
+            <td><span style="font-size:16px;font-weight:800;color:var(--purple)">D</span></td>
+            <td><b>Discretionary Fuel</b></td>
+            <td><b>Commander's sole discretion.</b> Not a regulatory requirement. Added when PIC judges additional margin is prudent (e.g. uncertainty in weather, ATC, operational context).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">No Alternate Required — Conditions</div>
+      <div style="font-size:11px;color:#1a5fa8;font-weight:600;margin-bottom:8px">CAT.OP.MPA.182(e) — All conditions must be met simultaneously</div>
+      <div style="font-size:12px;line-height:2;padding:8px;background:var(--gray);border-radius:4px">
+        ✔ Flight time ≤ <b>6 hrs</b> (in-flight re-planning: remaining ≤ 4 hrs)<br>
+        ✔ ≥ <b>2 separate runways</b> usable at destination<br>
+        ✔ Met forecast ETA <b>±1 hr</b>: ceiling ≥ 2,000 ft (600 m) or circling height +500 ft (150 m), whichever higher<br>
+        ✔ Ground visibility ≥ <b>5 km</b> during ±1 hr ETA window
+      </div>
+      <div style="margin-top:12px"><b>When no alternate required — alternate fuel replaced by:</b></div>
+      <div class="alert-gold" style="margin-top:6px">Minimum <b>15 minutes</b> holding at 1,500 ft above destination at holding speed, ISA (enables a safe landing).</div>
+      <div style="margin-top:12px"><b>2 Alternates required when:</b></div>
+      <div style="font-size:12px;margin-top:4px;line-height:1.8;padding:6px 10px;background:var(--gray);border-radius:4px">Met forecast at destination is below planning minima → operator must name a 2nd alternate. Load alternate fuel for the one requiring more fuel.</div>
+      <div style="margin-top:12px"><b>Isolated Aerodrome — Extra fuel rule:</b></div>
+      <div style="font-size:12px;margin-top:4px;line-height:1.8">
+        <b>Jets:</b> 2 hrs at normal cruise fuel consumption (including FRF)<br>
+        <b>Pistons:</b> Lesser of (45 min + 15% cruise time) or 2 hrs
+      </div>
+      <div class="alert-green" style="margin-top:8px">Isolated aerodrome = no adequate alternate within normal fuel range. PNR (point of no return) must be calculated and not exceeded without current met assessment.</div>
+    </div>
+  </div>
+
+  <!-- ROW 3: Planning Minima Table + Aerodrome Selection -->
+  <div class="card-row">
+    <div class="card card-wide">
+      <div class="card-title">Aerodrome Selection — Planning Minima for Alternates (CAT.OP.MPA.182 — Basic Scheme + Variations Table 4)</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Row</th>
+            <th>Type of Approach Available</th>
+            <th>Ceiling (cloud base / vertical vis)</th>
+            <th>RVR / Visibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>≥2 usable Type B (precision) approaches to 2 separate runways</td><td>DA/H + 100 ft</td><td>RVR + 300 m</td></tr>
+          <tr><td>2</td><td>1 usable Type B instrument approach</td><td>DA/H + 150 ft</td><td>RVR + 450 m</td></tr>
+          <tr><td>3</td><td>3D Type A approach (system min ≤200 ft)</td><td>DA/H + 200 ft</td><td>RVR/VIS + 800 m</td></tr>
+          <tr><td>4</td><td>≥2 usable Type A approaches, each on separate navaid</td><td>DA/H or MDA/H + 200 ft</td><td>RVR/VIS + 1,000 m</td></tr>
+          <tr><td>5</td><td>1 usable Type A instrument approach</td><td>DA/H or MDA/H + 400 ft</td><td>RVR/VIS + 1,500 m</td></tr>
+          <tr><td>6</td><td>Circling approach only</td><td>MDA/H + 400 ft</td><td>VIS + 1,500 m</td></tr>
+        </tbody>
+      </table>
+      <div class="alert-gold" style="margin-top:10px"><b>Operator may select the most convenient row.</b> Example: aerodrome with CAT3 (0 ft/75 m) + CAT1 (200 ft/550 m) on separate runways → may use Row 1 on CAT3 basis: 0+100 ft / 75+300 m = 100 ft / 375 m.</div>
+      <div class="alert-green" style="margin-top:8px"><b>Take-off alternate:</b> Required if departure met is below landing minima OR if return to departure is not possible. Must be close enough to minimise exposure time in abnormal/emergency conditions. For 2-engine aircraft: generally within 1 hr single-engine flying time in still air at cruise altitude (ISA).</div>
+    </div>
+  </div>
+
+  <!-- ROW 4: In-Flight Fuel Management -->
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">In-Flight Fuel Management — CAT.OP.MPA.185</div>
+      <div style="font-size:12px;line-height:1.9;margin-top:4px">
+        <b>Fuel checks:</b> At regular intervals (basic scheme: at least every <b>60 minutes</b>). At each check:<br>
+        &nbsp;&nbsp;① Compare actual vs. planned consumption<br>
+        &nbsp;&nbsp;② Verify sufficient fuel remains to complete flight<br>
+        &nbsp;&nbsp;③ Estimate fuel on landing at destination
+      </div>
+      <div style="margin-top:10px;font-size:12px;line-height:1.8"><b>Target at destination:</b> Usable fuel on landing must be ≥ Alternate fuel + FRF (or ≥ FRF if no alternate required).</div>
+      <div class="alert-gold" style="margin-top:10px">
+        <b>If check shows fuel &lt; Alternate + FRF:</b> Request delay info from ATC; assess whether to proceed or divert to perform safe landing with ≥ FRF.
+      </div>
+      <div class="alert-red" style="margin-top:8px;background:#fde8e8;border-left:4px solid #c0392b;padding:8px 10px;border-radius:4px;color:#5a0000">
+        <b>MINIMUM FUEL declaration:</b> When PIC has committed to land at a specific aerodrome AND any change to clearance may result in landing with &lt; FRF. NOT an emergency — but signals emergency is possible if further delay occurs.<br><br>
+        <b>MAYDAY MAYDAY MAYDAY FUEL:</b> When estimated fuel on landing will be less than FRF. This IS an emergency.
+      </div>
+      <div style="margin-top:10px;font-size:12px;line-height:1.8"><b>Data to be recorded:</b> Off-block fuel, take-off fuel (auto if possible), MINIMUM FUEL declarations, MAYDAY FUEL declarations, fuel after touchdown, on-block fuel.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">RCF — Revised Contingency Fuel (Decision Point Procedure)</div>
+      <div style="font-size:12px;line-height:1.8;margin-top:4px">Allows contingency fuel reduction to <b>3%</b> by using a Fuel ERA aerodrome. At the <b>Decision Point</b>, calculate two scenarios and carry the higher:</div>
+      <div style="margin:10px 0;padding:10px;background:var(--gray);border-radius:6px">
+        <div style="font-weight:700;color:var(--purple);margin-bottom:6px">RCF-1 — Continue to Destination 1:</div>
+        <div style="font-size:11px;line-height:1.9">Taxi + Trip (DP→Dest 1) + Contingency 5% (dep→Dest 1) + Alternate fuel (if req.) + FRF + Additional + Extra + Disc.</div>
+        <div style="font-weight:700;color:var(--purple);margin:8px 0 6px">RCF-2 — Divert to Destination 2 (ERA) via DP:</div>
+        <div style="font-size:11px;line-height:1.9">Taxi + Trip (dep→Dest 2 via DP) + Contingency ≥3% + Alternate (Dest 2, if req.) + FRF + Additional + Extra + Disc.</div>
+      </div>
+      <div class="formula">Load = MAX(RCF-1, RCF-2)</div>
+      <div class="alert-green" style="margin-top:8px"><b>At the Decision Point in flight:</b> Remaining fuel must be ≥ Trip (DP→Dest) + Cont 5% + Alternate + Additional + FRF.</div>
+
+      <div style="margin-top:14px"><div class="card-title" style="margin:0 0 8px">PDP — Point of No Return (Isolated Aerodrome)</div></div>
+      <div style="font-size:12px;line-height:1.8">Last point from which the aircraft can divert to a Fuel ERA aerodrome. Beyond the PNR, the aircraft is committed to the destination. Flight must not proceed past PNR unless current met/traffic assessment confirms a safe landing is achievable.</div>
+      <div style="font-size:12px;margin-top:8px;line-height:1.8"><b>At PNR in flight, remaining fuel must be ≥:</b><br>
+        Trip (PNR→Dest) + Contingency + Additional (≥FRF for jets / ≥45 min pistons) + Extra + Disc.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Landing Mass & Fuel Calculations</div>
+      <div class="formula" style="margin-bottom:6px">LM at Destination = ZFM + FRF + Alternate + Contingency</div>
+      <div class="formula">LM at Alternate = ZFM + FRF + Contingency (at altn)</div>
+      <div style="margin-top:10px;font-size:12px;line-height:1.8">
+        <b>ZFM</b> = Zero Fuel Mass (aircraft OEW + payload; no fuel)<br>
+        LM at destination = what remains after burning trip fuel and taxi from destination.<br>
+        Must be ≤ Maximum Landing Mass (MLM).
+      </div>
+      <div class="alert-green" style="margin-top:8px">If LM &gt; MLM → must offload payload or reduce extra/discretionary fuel. Tankering may not be possible.</div>
+
+      <div style="margin-top:14px"><div class="card-title" style="margin:0 0 8px">Fuel Tankering</div></div>
+      <div class="formula">FPR = Price at Departure ÷ Price at Arrival</div>
+      <div style="font-size:12px;margin-top:6px;line-height:1.8">
+        <b>FPR &lt; 1.0</b> → fuel is cheaper at departure → consider tankering extra fuel.<br>
+        <b>FPR ≥ 1.0</b> → no economic benefit from tankering.
+      </div>
+      <div style="font-size:12px;margin-top:6px;line-height:1.8"><b>Fuel penalty:</b> Extra fuel carried increases TOW → burns more fuel en-route. Net saving = Gross saving − Penalty cost (typically 3–5% of tanked fuel weight per sector).</div>
+      <div class="alert-gold" style="margin-top:8px">Always check: MTOM structural limits, MLM at arrival, and that FRF/alternate fuel is never compromised to accommodate tanker fuel.</div>
+    </div>
+  </div>
+
+  <!-- ROW 5: Fuel Conversions -->
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Fuel Conversions</div>
+      <table>
+        <thead><tr><th>From</th><th>To</th><th>Factor</th></tr></thead>
+        <tbody>
+          <tr><td>US Gallons (USG)</td><td>Pounds</td><td>× 6 (JET-A approx.)</td></tr>
+          <tr><td>US Gallons (USG)</td><td>Litres</td><td>× 3.785</td></tr>
+          <tr><td>Imperial Gallons (IMP)</td><td>Litres</td><td>× 4.546</td></tr>
+          <tr><td>Imperial Gallons</td><td>US Gallons</td><td>× 1.201</td></tr>
+          <tr><td>Pounds (lb)</td><td>Kilograms (kg)</td><td>× 0.4536</td></tr>
+          <tr><td>Kilograms (kg)</td><td>Pounds (lb)</td><td>× 2.205</td></tr>
+          <tr><td>Litres</td><td>Kilograms (SG 0.80)</td><td>× 0.80</td></tr>
+        </tbody>
+      </table>
+      <div class="alert-gold" style="margin-top:8px">JET-A specific gravity ≈ 0.80 kg/L (varies 0.775–0.840). Always use operator's declared SG for actual uplift calculations.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Statistical Contingency (Basic + Variations)</div>
+      <div style="font-size:12px;line-height:1.9;margin-top:4px">The operator may replace fixed 5% contingency with statistically-derived fuel if approved. Coverage levels per AMC GM2 CAT.OP.MPA.181:</div>
+      <table style="margin-top:8px">
+        <thead><tr><th>Coverage</th><th>Condition</th></tr></thead>
+        <tbody>
+          <tr><td><b>99% + 3% trip</b></td><td>Flight ≤ 2 hrs OR flight &gt;2 hrs with no ERA available</td></tr>
+          <tr><td><b>99%</b></td><td>Flight &gt; 2 hrs AND ERA available</td></tr>
+          <tr><td><b>90%</b></td><td>Flight &gt;2 hrs + ERA available + destination has ≥2 runways with Type B approach + met ≥ planning minima</td></tr>
+        </tbody>
+      </table>
+      <div class="alert-green" style="margin-top:8px">Statistical contingency requires use of a computerised flight-planning system and an operational control system with flight monitoring.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Fuel ERA Aerodrome — 3% Contingency Criteria</div>
+      <div style="font-size:12px;line-height:1.8;margin-top:4px">To reduce contingency to 3%, a <b>Fuel ERA aerodrome</b> must be designated in the operational flight plan. Geometric criteria (AMC7 CAT.OP.MPA.181):</div>
+      <div style="margin:10px 0;padding:10px;background:var(--gray);border-radius:6px;font-size:12px;line-height:1.8">
+        Centre of circle = point on planned route at distance <b>25% of total route</b> from destination (minimum 20% + 50 NM).<br>
+        Radius of circle = <b>20% of total route distance</b>.<br>
+        ERA aerodrome must lie <b>within this circle</b>.<br>
+        All distances in still-air conditions.
+      </div>
+      <div style="font-size:12px;line-height:1.8"><b>Example:</b> Total route 1,000 NM → Centre at 250 NM from destination. Circle radius = 200 NM. ERA must be within 200 NM of that centre point.</div>
+      <div class="alert-gold" style="margin-top:8px">ERA aerodrome must have suitable approaches and weather forecast meeting planning minima for anticipated time of use.</div>
+    </div>
+  </div>
+
+  <!-- ── SUB-HEADER: NAVIGATION PLANNING ── -->
+  <div style="background:var(--accent);border-left:5px solid var(--purple-light);padding:10px 18px;margin:24px 0 20px;border-radius:4px;font-size:13px;font-weight:700;color:var(--purple);letter-spacing:0.5px;">
+    🧭 NAVIGATION PLANNING — Points, Levels &amp; Distance Calculations
+  </div>
+
+  <!-- ROW 6: PET & PSR -->
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">PET — Point of Equal Time (Equal Time Point)</div>
+      <div class="alert-gold" style="margin-bottom:10px">The point where time to fly <em>on</em> to destination = time to fly <em>home</em> to departure. Used to determine diversion options.</div>
+      <div class="formula">X = (D × H) / (O + H)</div>
+      <div style="margin:8px 0 4px;font-size:12px;line-height:1.8">
+        <b>X</b> = distance from departure to PET<br>
+        <b>D</b> = total distance departure → destination<br>
+        <b>H</b> = groundspeed <em>homeward</em> (return leg, into wind if headwind on outbound)<br>
+        <b>O</b> = groundspeed <em>onward</em> (forward to destination)
+      </div>
+      <div class="alert-green"><b>Wind effect:</b> PET always moves <em>into wind</em> — headwind on outbound → PET moves closer to destination; tailwind → PET moves towards departure.</div>
+      <div style="margin-top:10px;font-size:12px;line-height:1.8"><b>2-engine PET (asymmetric):</b> Use driftdown speed + single-engine GS for the failed-engine leg. Useful for ETOPS planning.</div>
+      <div style="margin-top:6px;font-size:12px"><b>Multi-leg PET:</b> Calculate cumulative time from each end for all legs; PET is where cumulative times are equal.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">PSR — Point of Safe Return</div>
+      <div class="alert-gold" style="margin-bottom:10px">Last point from which the aircraft can return to departure with at least the Final Reserve Fuel on landing.</div>
+      <div class="formula">X = (E × O × H) / (O + H)</div>
+      <div style="margin:8px 0 4px;font-size:12px;line-height:1.8">
+        <b>X</b> = distance from departure to PSR<br>
+        <b>E</b> = usable endurance (time) available for outbound + return combined<br>
+        <b>O</b> = groundspeed outbound<br>
+        <b>H</b> = groundspeed homebound
+      </div>
+      <div style="font-size:12px;line-height:1.8;margin-top:6px"><b>Endurance E:</b> (Total usable fuel − Final Reserve Fuel) ÷ Fuel flow</div>
+      <div class="alert-green"><b>Wind effect:</b> PSR always moves <em>towards departure</em> with a headwind (headwind shrinks usable range outbound). Tailwind on outbound → PSR moves further from departure.</div>
+      <div style="margin-top:8px;font-size:12px">PSR is always ≤ PET in distance from departure.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">NAM / NGM Conversions</div>
+      <div class="formula">NAM / TAS = NGM / GS</div>
+      <div class="formula">NGM = NAM ± (WC × t / 60)</div>
+      <div style="margin-top:10px;font-size:12px;line-height:1.9">
+        <b>NAM</b> = Nautical Air Miles — distance through the air mass<br>
+        <b>NGM</b> = Nautical Ground Miles — actual distance over ground<br>
+        <b>WC</b> = Wind Component (+ tailwind, − headwind)<br>
+        <b>t</b> = time in minutes
+      </div>
+      <div class="alert-gold" style="margin-top:10px">Range tables are in NAM (air miles). Convert to NGM using GS for actual ground distance flown. Use TAS for NAM, GS for NGM.</div>
+      <div style="margin-top:10px"><b>1-in-60 Rule:</b></div>
+      <div class="formula" style="margin-top:4px">Track Error (°) = Off-track × 60 ÷ Distance Flown</div>
+      <div class="formula">Closing Angle = Off-track × 60 ÷ Distance to Go</div>
+      <div style="font-size:11px;margin-top:4px;color:#555">Hdg correction (direct): Track Error + Closing Angle. Valid for angles &lt;15°.</div>
+    </div>
+  </div>
+
+  <!-- ROW 7: Cruising Levels + Altitude Designations -->
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Cruising Levels — Semi-Circular Rules</div>
+      <table>
+        <thead><tr><th>Rule</th><th>Track (Magnetic)</th><th>Assigned Level</th></tr></thead>
+        <tbody>
+          <tr style="background:#f0fff4"><td>IFR Easterly</td><td>000° – 179°</td><td>Odd Flight Levels (FL 70, 90, 110, 130…)</td></tr>
+          <tr><td>IFR Westerly</td><td>180° – 359°</td><td>Even Flight Levels (FL 80, 100, 120, 140…)</td></tr>
+          <tr style="background:#f0fff4"><td>VFR Easterly</td><td>000° – 179°</td><td>Odd FLs + 500 ft (FL 75, 95, 115…)</td></tr>
+          <tr><td>VFR Westerly</td><td>180° – 359°</td><td>Even FLs + 500 ft (FL 85, 105, 125…)</td></tr>
+        </tbody>
+      </table>
+      <div class="alert-green" style="margin-top:10px">Based on <b>magnetic track</b> in all areas except polar regions where <b>true track</b> is used. ICAO Annex 2 Appendix 3. Some states may have own rules — check AIPs.</div>
+    </div>
+
+    <div class="card card-wide">
+      <div class="card-title">Altitude / Level Designations</div>
+      <table>
+        <thead><tr><th>Designation</th><th>Chart Symbol</th><th>Coverage</th><th>Clearance</th></tr></thead>
+        <tbody>
+          <tr><td><b>MEA</b><br><small>Min En-Route Alt</small></td><td>FL number alone</td><td>Along airway / route segment</td><td>Terrain + navaid signal reception (VOR ≥ 40 NM). Most restrictive.</td></tr>
+          <tr><td><b>MORA</b><br><small>Min Off-Route Alt</small></td><td>"a" suffix on segment</td><td>10 NM either side of route centreline</td><td>1,000 ft buffer (terrain &lt;6,000 ft); 2,000 ft (terrain ≥6,000 ft).</td></tr>
+          <tr><td><b>MOCA</b><br><small>Min Obstruction Clearance Alt</small></td><td>"T" below MEA value</td><td>Along airway segment</td><td>Terrain clearance only; navaid reception guaranteed within 22 NM of VOR.</td></tr>
+          <tr><td><b>MAA</b><br><small>Max Authorised Alt</small></td><td>— (printed above route)</td><td>Segment</td><td>Upper limit — not to be exceeded on segment (ATC separation, airspace).</td></tr>
+          <tr><td><b>MSA</b><br><small>Min Sector Alt</small></td><td>On approach plates</td><td>25 NM radius from navaid/fix</td><td>1,000 ft above highest obstacle in sector. Emergency use — no navaid signal guaranteed.</td></tr>
+          <tr><td><b>Grid MORA</b></td><td>Large number on chart</td><td>1° lat/long grid cell</td><td>2,000 ft buffer if highest terrain &gt;5,000 ft; 1,000 ft if below.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── SUB-HEADER: FLIGHT PLAN & ATC ── -->
+  <div style="background:var(--accent);border-left:5px solid var(--purple-light);padding:10px 18px;margin:24px 0 20px;border-radius:4px;font-size:13px;font-weight:700;color:var(--purple);letter-spacing:0.5px;">
+    📋 ATS FLIGHT PLAN — ICAO Doc 4444 / CAT.OP.MPA.177
+  </div>
+
+  <!-- ROW 8: Flight Plan Items + Timing -->
+  <div class="card-row">
+    <div class="card card-wide">
+      <div class="card-title">ICAO Flight Plan — Key Fields</div>
+      <table>
+        <thead><tr><th>Field</th><th>Item</th><th>Key Notes</th></tr></thead>
+        <tbody>
+          <tr><td><b>7</b></td><td>Aircraft ID / Callsign</td><td>Max 7 characters. Reg. number or ICAO telephony callsign.</td></tr>
+          <tr><td><b>8</b></td><td>Flight Rules &amp; Type</td><td>Rules: <b>I</b>=IFR, <b>V</b>=VFR, <b>Y</b>=IFR then VFR, <b>Z</b>=VFR then IFR. Type: <b>S</b>=Scheduled, <b>N</b>=Non-scheduled, <b>G</b>=General aviation, <b>M</b>=Military, <b>X</b>=Other.</td></tr>
+          <tr><td><b>9</b></td><td>Number + Type + Wake</td><td>Wake turbulence category (MTOM): <b>J</b>=Super &gt;560,000 kg | <b>H</b>=Heavy &gt;136,000 kg | <b>M</b>=Medium 7,000–136,000 kg | <b>L</b>=Light &lt;7,000 kg.</td></tr>
+          <tr><td><b>10</b></td><td>Equipment / Capabilities</td><td><b>S</b>=Standard (VHF, VOR, ILS). Special: <b>X</b>=No COM/NAV; <b>W</b>=RVSM; <b>A</b>=4096 transponder; <b>C</b>=Mode A+C (altitude); <b>S</b>=Mode S+PA+Ident; <b>B1/B2</b>=ADS-B. Transponder field (after /): <b>N</b>=None; <b>A</b>=Mode A; <b>C</b>=Mode C; <b>S</b>=Mode S.</td></tr>
+          <tr><td><b>13</b></td><td>Departure Aerodrome + EOBT</td><td>EOBT = Estimated <b>Off-Blocks Time</b> (not take-off time). Use ZZZZ if aerodrome has no ICAO designator.</td></tr>
+          <tr><td><b>15</b></td><td>Route</td><td>Speed (KNNN or MNNN), then requested FL (FNNN). Insert waypoints when leg &gt;30 min or &gt;200 NM. SID/STAR designators where applicable.</td></tr>
+          <tr><td><b>16</b></td><td>Destination + EET + Alternates</td><td>EET = Estimated Elapsed Time from T/O to overhead destination (duration HHMM, not clock time). Include 1st and 2nd alternates. ALTN not required if destination = departure.</td></tr>
+          <tr><td><b>18</b></td><td>Other Information</td><td>PBN/ required for RNAV/RNP ops. NAV/ for special nav equipment. STS/ for special handling (HOSP, MEDEVAC, etc.). SELCAL code. RMK/ for remarks.</td></tr>
+          <tr><td><b>19</b></td><td>Supplementary</td><td>Endurance (E/HHMM), POB (P/NN), emergency radio (R/), survival (S/), jackets (J/), dinghies (D/), aircraft colour (A/), PIC name (N/).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">FPL Submission, Closure &amp; Deviation Rules</div>
+      <table>
+        <thead><tr><th>Situation</th><th>Timing</th></tr></thead>
+        <tbody>
+          <tr><td>Normal FPL filing</td><td><b>60 min</b> before EOBT</td></tr>
+          <tr><td>Unforeseen departure</td><td><b>30 min</b> before EOBT</td></tr>
+          <tr><td>NAT / ATFM flights</td><td><b>3 hrs</b> before EOBT</td></tr>
+          <tr><td>Airborne (not pre-filed)</td><td><b>10 min</b> after take-off</td></tr>
+          <tr><td>FPL closure after landing</td><td>Within <b>30 min</b></td></tr>
+          <tr><td>EOBT delay — controlled airspace</td><td>&gt;30 min → cancel or amend</td></tr>
+          <tr><td>EOBT delay — uncontrolled</td><td>&gt;60 min → cancel or amend</td></tr>
+        </tbody>
+      </table>
+      <div class="alert-gold" style="margin-top:10px">
+        <b>TAS deviation:</b> &gt;5% of filed TAS OR &gt;Mach 0.01 → report to ATC.<br>
+        <b>ETA deviation:</b> &gt;2 min from filed or last updated ETA → report to ATC.
+      </div>
+      <div style="margin-top:10px">
+        <div class="card-title" style="margin:0 0 6px">NOTAM Types</div>
+        <table>
+          <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><b>NOTAMN</b></td><td>New — no previous NOTAM replaced</td></tr>
+            <tr><td><b>NOTAMR</b></td><td>Replacing — replaces and cancels ref. NOTAM</td></tr>
+            <tr><td><b>NOTAMC</b></td><td>Cancelling — cancels ref. NOTAM, no replacement</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;margin-top:6px">Format: YY MM DD HH MM (UTC). E.g. 2605011230 = 2026 May 01 12:30 UTC. All times UTC.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 9: Formula Summary -->
+  <div style="background:var(--accent);border-left:5px solid var(--purple-light);padding:10px 18px;margin:24px 0 20px;border-radius:4px;font-size:13px;font-weight:700;color:var(--purple);letter-spacing:0.5px;">
+    📐 FORMULA QUICK-REFERENCE
+  </div>
+  <div class="card-row">
+    <div class="card card-wide">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px">
+        <div style="background:var(--gray);padding:12px;border-radius:6px">
+          <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-size:11px">PET</div>
+          <div class="formula" style="margin:0">X = (D × H) / (O + H)</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">D=total dist | H=GS home | O=GS on</div>
+        </div>
+        <div style="background:var(--gray);padding:12px;border-radius:6px">
+          <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-size:11px">PSR</div>
+          <div class="formula" style="margin:0">X = (E × O × H) / (O + H)</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">E=endurance (time) | O=GS out | H=GS home</div>
+        </div>
+        <div style="background:var(--gray);padding:12px;border-radius:6px">
+          <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-size:11px">NAM / NGM</div>
+          <div class="formula" style="margin:0">NAM/TAS = NGM/GS</div>
+          <div class="formula" style="margin:4px 0 0">NGM = NAM ± (WC × t/60)</div>
+        </div>
+        <div style="background:var(--gray);padding:12px;border-radius:6px">
+          <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-size:11px">1-IN-60</div>
+          <div class="formula" style="margin:0">TE = Off × 60 ÷ Flown</div>
+          <div class="formula" style="margin:4px 0 0">CA = Off × 60 ÷ To Go</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">Correction (direct) = TE + CA</div>
+        </div>
+        <div style="background:var(--gray);padding:12px;border-radius:6px">
+          <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-size:11px">TANKERING</div>
+          <div class="formula" style="margin:0">FPR = P_dep ÷ P_arr</div>
+          <div style="font-size:11px;margin-top:4px;color:#555">FPR &lt;1.0 → tankering viable; check penalty</div>
+        </div>
+        <div style="background:var(--gray);padding:12px;border-radius:6px">
+          <div style="font-weight:700;color:var(--purple);margin-bottom:6px;font-size:11px">LANDING MASS</div>
+          <div class="formula" style="margin:0">LM_dest = ZFM+FRF+ALT+CONT</div>
+          <div class="formula" style="margin:4px 0 0">LM_altn = ZFM+FRF+CONT(altn)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end flightplanning section -->
+
+</div><!-- end container -->
+
+<div style="background:#0a2d55;color:rgba(255,255,255,0.6);text-align:center;padding:12px;font-size:11px;margin-top:20px">
+  ATPL Operational Procedures Revision Sheet — Issak Zanini — Based on Oxford CAE 070 OP, EASA EU 965/2012, ICAO Annexes — May 2026
+</div>
+
+</body>
+</html>
