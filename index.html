@@ -152,6 +152,105 @@
 
   /* ── SCROLL TARGET OFFSET ── */
   .anchor { scroll-margin-top: 45px; }
+
+  /* ── DROPDOWN NAV ── */
+  .nav { padding: 0 12px; align-items: stretch; }
+
+  .nav-group {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+  }
+  .nav-group-btn {
+    color: rgba(255,255,255,0.9);
+    font-size: 11.5px; font-weight: 700;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 5px;
+    user-select: none;
+    letter-spacing: 0.3px;
+  }
+  .nav-group-btn::after {
+    content: '▾';
+    font-size: 10px;
+    opacity: 0.7;
+  }
+  .nav-group:hover .nav-group-btn,
+  .nav-group.open .nav-group-btn {
+    color: white;
+    border-bottom-color: #7ec8e3;
+    background: rgba(255,255,255,0.08);
+  }
+  .nav-group-btn::after {
+    content: '▾'; font-size: 9px; opacity: 0.7;
+    transition: transform 0.15s;
+  }
+  .nav-group.open .nav-group-btn::after { transform: rotate(180deg); }
+
+  .nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #0e3a6e;
+    border: 1px solid rgba(126,200,227,0.25);
+    border-top: 2px solid #7ec8e3;
+    border-radius: 0 0 8px 8px;
+    min-width: 200px;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    padding: 4px 0;
+  }
+  .nav-group.open .nav-dropdown,
+  .nav-group:hover .nav-dropdown { display: block; }
+
+  .nav-dropdown a {
+    display: block;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    padding: 8px 18px;
+    font-size: 11.5px;
+    font-weight: 600;
+    border-bottom: none;
+    white-space: nowrap;
+    transition: background 0.12s, color 0.12s;
+  }
+  .nav-dropdown a:hover {
+    background: rgba(126,200,227,0.18);
+    color: #7ec8e3;
+  }
+  .nav-dropdown-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(126,200,227,0.55);
+    padding: 8px 18px 3px;
+  }
+  .nav-dropdown hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 3px 0; }
+
+  /* Selection CTA stays standalone */
+  .nav-selection-btn {
+    background: #e63946;
+    color: #fff !important;
+    border-radius: 4px;
+    margin: auto 6px;
+    padding: 6px 14px !important;
+    border-bottom: none !important;
+    font-size: 11.5px; font-weight: 700;
+    text-decoration: none;
+    display: flex; align-items: center;
+    transition: background 0.15s;
+  }
+  .nav-selection-btn:hover { background: #c1121f !important; border-bottom-color: transparent !important; }
+
+  @media (max-width: 768px) {
+    .nav-group { width: 100%; }
+    .nav-dropdown { position: static; border-radius: 0; min-width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -166,24 +265,93 @@
 </div>
 
 <nav class="nav">
-  <a href="#intro">Intro & Definitions</a>
-  <a href="#equipment">Equipment</a>
-  <a href="#oxygen">Oxygen</a>
-  <a href="#survival">Survival & Safety</a>
-  <a href="#crew">Crew Requirements</a>
-  <a href="#fdl">FDL & Rest</a>
-  <a href="#planning">Pre-flight Planning</a>
-  <a href="#minima">Operating Minima</a>
-  <a href="#lvo">LVO</a>
-  <a href="#fuel">Fuel Policy</a>
-  <a href="#etops">ETOPS</a>
-  <a href="#nat">NAT / RVSM</a>
-  <a href="#special">Special Ops</a>
-  <a href="#emergency">Emergencies</a>
-  <a href="#dg">Dangerous Goods</a>
-  <a href="#numbers">Key Numbers</a>
-  <a href="#flightplanning">Flight Planning</a>
+
+  <!-- ① AIRCRAFT & EQUIPMENT -->
+  <div class="nav-group">
+    <div class="nav-group-btn">🛩 Aircraft & Equipment</div>
+    <div class="nav-dropdown">
+      <div class="nav-dropdown-label">Airworthiness</div>
+      <a href="#intro">Intro &amp; Definitions</a>
+      <a href="#equipment">Equipment Requirements</a>
+      <hr>
+      <div class="nav-dropdown-label">Crew</div>
+      <a href="#crew">Crew Composition &amp; Recency</a>
+      <a href="#fdl">FDL, FTL &amp; Rest</a>
+    </div>
+  </div>
+
+  <!-- ② SAFETY & EMERGENCIES -->
+  <div class="nav-group">
+    <div class="nav-group-btn">🆘 Safety</div>
+    <div class="nav-dropdown">
+      <div class="nav-dropdown-label">On-board Safety</div>
+      <a href="#oxygen">Oxygen Requirements</a>
+      <a href="#survival">Survival &amp; Safety Equipment</a>
+      <a href="#dg">Dangerous Goods</a>
+      <hr>
+      <div class="nav-dropdown-label">Emergency</div>
+      <a href="#emergency">Emergency Procedures</a>
+    </div>
+  </div>
+
+  <!-- ③ OPERATIONS -->
+  <div class="nav-group">
+    <div class="nav-group-btn">📋 Operations</div>
+    <div class="nav-dropdown">
+      <div class="nav-dropdown-label">Pre-flight</div>
+      <a href="#planning">Pre-flight Planning</a>
+      <a href="#fuel">Fuel Policy (TTCAFED)</a>
+      <hr>
+      <div class="nav-dropdown-label">Special Operations</div>
+      <a href="#etops">ETOPS</a>
+      <a href="#nat">NAT HLA / RVSM</a>
+      <a href="#special">Special Ops (MNPS, PBN…)</a>
+    </div>
+  </div>
+
+  <!-- ④ METEOROLOGY & MINIMA -->
+  <div class="nav-group">
+    <div class="nav-group-btn">🌦 Minima & Wx</div>
+    <div class="nav-dropdown">
+      <div class="nav-dropdown-label">Operating Minima</div>
+      <a href="#minima">Operating Minima (CAT I / NPA)</a>
+      <a href="#lvo">Low Visibility Operations (LVO)</a>
+    </div>
+  </div>
+
+  <!-- ⑤ FLIGHT PLANNING -->
+  <div class="nav-group">
+    <div class="nav-group-btn">🗺 Flight Planning</div>
+    <div class="nav-dropdown">
+      <div class="nav-dropdown-label">Planning Tools</div>
+      <a href="#flightplanning">ICAO FPL &amp; Fuel Planning</a>
+      <hr>
+      <div class="nav-dropdown-label">Quick Reference</div>
+      <a href="#numbers">Key Numbers &amp; Limits</a>
+    </div>
+  </div>
+
+  <!-- ✈ SELECTION (standalone CTA) -->
+  <a href="#selection" class="nav-selection-btn">✈ Selection Prep</a>
+
 </nav>
+
+<script>
+/* Toggle on click for touch/keyboard; hover still works on desktop */
+document.querySelectorAll('.nav-group-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const grp = btn.closest('.nav-group');
+    const isOpen = grp.classList.contains('open');
+    document.querySelectorAll('.nav-group').forEach(g => g.classList.remove('open'));
+    if (!isOpen) grp.classList.add('open');
+  });
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-group')) {
+    document.querySelectorAll('.nav-group').forEach(g => g.classList.remove('open'));
+  }
+});
+</script>
 
 <div class="container">
 
@@ -2835,6 +3003,493 @@
   </div>
 
 </div><!-- end flightplanning section -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  AIRLINE SELECTION PREPARATION                                  -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="section anchor" id="selection" style="border-top:4px solid #e63946">
+  <div class="section-header" style="background:linear-gradient(135deg,#e63946,#c1121f)">🏢 Airline Selection — Interview, Simulator &amp; Technical</div>
+
+  <!-- SUB-HEADER: PERSONAL INTERVIEW -->
+  <div style="background:#fff0f0;border-left:5px solid #e63946;padding:10px 18px;margin:16px 0 14px;border-radius:4px;font-size:13px;font-weight:700;color:#c1121f;letter-spacing:0.5px;">
+    👤 PERSONAL (NON-TECHNICAL) INTERVIEW — Ready for Take-Off, Chapter 5
+  </div>
+
+  <div class="grid-3">
+    <div class="card highlight">
+      <div class="card-title">Interview Format &amp; Structure</div>
+      <ul>
+        <li><span class="hl">One-on-one</span> or <span class="hl">panel</span> interview (HR + Flight Ops + line pilot)</li>
+        <li>Duration: <span class="hl">30–60 minutes</span>; formal setting, in-person or virtual</li>
+        <li>Typical flow: Introduce yourself → background → aviation-related → situational → questions for them</li>
+        <li>Personality test may precede or follow — no right/wrong answers, consistency is key</li>
+        <li>Interviewers assess: technical knowledge, cultural fit, emotional intelligence, teamwork, safety culture</li>
+      </ul>
+      <hr class="sep">
+      <div class="card-title">Personality Test — Dos &amp; Don'ts</div>
+      <ul>
+        <li><span class="hl-green">Do:</span> Be honest and consistent; trust your instincts; reflect on real past experiences</li>
+        <li><span class="hl-red">Don't:</span> Fake extreme responses; rush; be overly self-critical; overthink "right" answers</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Key Competencies Assessed</div>
+      <ul>
+        <li><span class="hl">Safety first</span> — always prioritise regulations and SOPs over commercial pressure</li>
+        <li><span class="hl">CRM &amp; Teamwork</span> — work effectively with all crew members</li>
+        <li><span class="hl">Communication</span> — clear, assertive, professional at all times</li>
+        <li><span class="hl">Decision-making</span> — structured, timely, uses all available information</li>
+        <li><span class="hl">Situational Awareness</span> — big picture; anticipates future states</li>
+        <li><span class="hl">Resilience</span> — handles setbacks, learns from them, stays composed</li>
+        <li><span class="hl">Accountability</span> — owns mistakes, doesn't deflect responsibility</li>
+        <li><span class="hl">Cultural fit</span> — aligns with airline's values and mission</li>
+        <li><span class="hl">Commercial awareness</span> — understands airline business realities</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Red Flags — Avoid These</div>
+      <ul>
+        <li><span class="hl-red">Inconsistent responses</span> — contradicting your CV, personality test or previous answers</li>
+        <li><span class="hl-red">Deflecting responsibility</span> — blaming others for failures; not showing self-reflection</li>
+        <li><span class="hl-red">Negative attitude</span> — speaking poorly about previous employers or colleagues</li>
+        <li><span class="hl-red">Emotional instability</span> — becoming defensive, nervous or frustrated under challenge</li>
+        <li><span class="hl-red">Poor safety culture</span> — any hint that safety can be compromised for convenience</li>
+        <li><span class="hl-red">Arrogance</span> — not listening, dismissing others, overstating experience</li>
+        <li><span class="hl-red">Lack of preparation</span> — not knowing the airline's fleet, routes, values or history</li>
+      </ul>
+      <div class="alert alert-red" style="margin-top:8px">Integrity is paramount in aviation. Never lie or exaggerate — inconsistencies will be found.</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:14px">
+    <div class="card">
+      <div class="card-title">STAR Method — Answering Situational Questions</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px">
+        <div style="background:#e8f0fb;padding:10px;border-radius:6px;border-left:3px solid #0d3b6e">
+          <div style="font-weight:700;color:#0d3b6e;margin-bottom:4px">S — Situation</div>
+          <div style="font-size:11px">Set the scene. Briefly describe the context and background.</div>
+        </div>
+        <div style="background:#e8f0fb;padding:10px;border-radius:6px;border-left:3px solid #0d3b6e">
+          <div style="font-weight:700;color:#0d3b6e;margin-bottom:4px">T — Task</div>
+          <div style="font-size:11px">Describe your specific responsibility or challenge in that situation.</div>
+        </div>
+        <div style="background:#e8f0fb;padding:10px;border-radius:6px;border-left:3px solid #0d3b6e">
+          <div style="font-weight:700;color:#0d3b6e;margin-bottom:4px">A — Action</div>
+          <div style="font-size:11px">Explain the specific steps YOU took. Use "I", not "we".</div>
+        </div>
+        <div style="background:#e8f0fb;padding:10px;border-radius:6px;border-left:3px solid #0d3b6e">
+          <div style="font-weight:700;color:#0d3b6e;margin-bottom:4px">R — Result</div>
+          <div style="font-size:11px">State the outcome. Quantify where possible. What did you learn?</div>
+        </div>
+      </div>
+      <div class="alert alert-blue" style="margin-top:8px">Use STAR for ALL competency questions: leadership, conflict, stress, teamwork, decision-making.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Preparation Strategy</div>
+      <ul>
+        <li><strong>Research the airline:</strong> fleet, destinations, business model (LCC vs legacy), alliance, recent news, CEO</li>
+        <li><strong>Build a competency table:</strong> for each skill (communication, leadership, stress, decision-making) prepare 2 real examples from your flying life</li>
+        <li><strong>Practise aloud:</strong> record yourself, time your answers (aim for 90–120 sec per answer)</li>
+        <li><strong>Prepare questions to ask them:</strong> fleet expansion, training culture, pilot wellness, upgrade timeline</li>
+        <li><strong>Arrive early:</strong> treat everyone with respect — from receptionist to chief pilot</li>
+        <li><strong>Dress professionally:</strong> standard uniform-level smartness; clean and well-fitting</li>
+      </ul>
+      <div class="alert alert-gold" style="margin-top:8px">Your career narrative should be a coherent story from first flight to today — know every stage and why you made each choice.</div>
+    </div>
+  </div>
+
+  <!-- COMMON INTERVIEW QUESTIONS -->
+  <div style="margin-top:18px">
+    <div class="card">
+      <div class="card-title">Common Interview Questions &amp; Guidance</div>
+      <div class="grid-2" style="margin-top:8px">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#e63946;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">Background &amp; Personality</div>
+          <table style="font-size:11px">
+            <tr><th style="width:45%">Question</th><th>Key Approach</th></tr>
+            <tr><td>"Tell me about yourself"</td><td>Structured narrative: background → training → goals. 60–90 sec.</td></tr>
+            <tr><td>"Greatest weakness?"</td><td>Real but not safety-critical; show active steps to improve.</td></tr>
+            <tr><td>"Why this airline?"</td><td>Specific: fleet, values, growth — not just "big airline".</td></tr>
+            <tr><td>"Why should we hire you?"</td><td>Align your skills precisely to their role requirements.</td></tr>
+            <tr><td>"Where do you see yourself in 5 years?"</td><td>Captain here — show commitment, not a stepping-stone attitude.</td></tr>
+            <tr><td>"Have you failed an exam?"</td><td>Yes (if true) → what you learned + improved. Never deny a known failure.</td></tr>
+            <tr><td>"If you couldn't fly for medical reasons?"</td><td>Shows passion and adaptability — training, consultancy, ATC, ops.</td></tr>
+            <tr><td>"What won't you do if we ask?"</td><td>Anything that compromises safety or violates regulations.</td></tr>
+          </table>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#e63946;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">Aviation-Specific &amp; Situational</div>
+          <table style="font-size:11px">
+            <tr><th style="width:45%">Question</th><th>Key Approach</th></tr>
+            <tr><td>"What makes a good FO?"</td><td>Technical proficiency, effective CRM, proactive monitoring, assertive but respectful.</td></tr>
+            <tr><td>"What makes a good captain?"</td><td>Leadership, decisiveness, clear communication, psychological safety for crew.</td></tr>
+            <tr><td>"How do you handle a captain breaching SOPs?"</td><td>Assert professionally ("I'm not comfortable with…"), escalate if ignored.</td></tr>
+            <tr><td>"Captain wants to fly through CB?"</td><td>Express concern, suggest alternatives — crew resource management in action.</td></tr>
+            <tr><td>"Co-pilot smells of alcohol?"</td><td>Do NOT depart. Report immediately to ops/safety — safety is non-negotiable.</td></tr>
+            <tr><td>"Captain is incapacitated — first 3 priorities?"</td><td>1) Fly the aircraft. 2) Inform ATC + cabin crew. 3) QRH / prepare landing.</td></tr>
+            <tr><td>"You smell smoke in the cockpit?"</td><td>Masks on → identify source → QRH → ATC → divert if required.</td></tr>
+            <tr><td>"Approaching alternate fuel at destination?"</td><td>Declare MINIMUM FUEL, evaluate options, divert if landing not imminent.</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB-HEADER: SIMULATOR ASSESSMENT -->
+  <div style="background:#fff0f0;border-left:5px solid #e63946;padding:10px 18px;margin:22px 0 14px;border-radius:4px;font-size:13px;font-weight:700;color:#c1121f;letter-spacing:0.5px;">
+    🎮 SIMULATOR ASSESSMENT — Ready for Take-Off, Chapter 2
+  </div>
+
+  <div class="grid-3">
+    <div class="card highlight">
+      <div class="card-title">Typical Assessment Profile</div>
+      <ul>
+        <li><span class="hl">Raw Data SID</span> — manual departure following a SID with raw nav; tests instrument flying &amp; ATC comms</li>
+        <li><span class="hl">Airwork</span> — steep turns (30–45°), climbs/descents, level speed changes, stall recognition</li>
+        <li><span class="hl">Holding</span> — manual entry (direct/parallel/teardrop) over VOR or NDB; wind correction</li>
+        <li><span class="hl">ILS Raw Data</span> — manual precision approach to DH; go-around if visual refs not acquired</li>
+        <li><span class="hl">N-1 Go-Around</span> — engine failure at DA; immediate full power, pitch, lateral control OEI</li>
+        <li><span class="hl">2D Approach (NPA)</span> — VOR or NDB approach with CDFA; MDA/missed approach decision</li>
+      </ul>
+      <div class="alert alert-blue" style="margin-top:8px">Most assessments use A320 FFS or fixed-base Citation/small jet with analog instruments. Know both.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">EASA Competency-Based Evaluation (CBE)</div>
+      <ul>
+        <li><span class="hl">Application of Procedures</span> — correct SOPs, checklists, prioritisation</li>
+        <li><span class="hl">Communication</span> — clear, concise, professional with ATC and crew</li>
+        <li><span class="hl">Aircraft Flight Path Management (manual)</span> — precise control; instrument scan</li>
+        <li><span class="hl">Problem Solving &amp; Decision Making</span> — structured, timely, uses resources</li>
+        <li><span class="hl">Situation Awareness</span> — anticipates, big picture maintained throughout</li>
+        <li><span class="hl">Workload Management</span> — prioritises tasks; avoids saturation</li>
+        <li><span class="hl">Leadership &amp; Teamwork</span> — if multi-crew; delegates, monitors, supports</li>
+      </ul>
+      <div class="alert alert-gold" style="margin-top:8px">Assessors look for SAFE, STRUCTURED, and PREDICTABLE behaviour — not impressive aerobatics.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sim Tips &amp; Key Formulas</div>
+      <div style="font-size:11px;font-weight:700;color:var(--purple-light);margin:4px 0">General</div>
+      <ul>
+        <li>Brief the approach fully before starting: frequency, course, FAF, DH/MDH, missed approach</li>
+        <li>Scan: <span class="hl">attitude → performance → navigation</span>; never fixate</li>
+        <li>Heading correction bank = <span class="hl">½ × heading error</span></li>
+        <li>Roll-out lead: <span class="hl">bank (°) ÷ 3</span> degrees before target heading</li>
+        <li>Steep turn: add ~5% thrust before entry; check VSI = 0 throughout</li>
+        <li>Declare intention early — assessors reward communication</li>
+      </ul>
+      <div style="font-size:11px;font-weight:700;color:var(--purple-light);margin:8px 0 4px">A320 Rules of Thumb</div>
+      <div class="formula" style="margin:3px 0">N1% ≈ GW (tons) at level GD speed</div>
+      <div class="formula" style="margin:3px 0">3° glide: N1 = level N1 − 15% (CONF3/FULL)</div>
+      <div class="formula" style="margin:3px 0">+1 ton or +1,000ft → +1% N1 | ±20kt → ±10% N1</div>
+      <div class="formula" style="margin:3px 0">Mach × 1,000 = fpm/degree pitch change</div>
+      <div style="font-size:11px;font-weight:700;color:var(--purple-light);margin:8px 0 4px">737 Rules of Thumb</div>
+      <div class="formula" style="margin:3px 0">Single engine: add ~10–12% N1</div>
+      <div class="formula" style="margin:3px 0">Idle descent: ~3 NM per 1,000 ft</div>
+    </div>
+  </div>
+
+  <!-- Approach gates -->
+  <div class="grid-2" style="margin-top:14px">
+    <div class="card">
+      <div class="card-title">A320 Approach Configuration Gates</div>
+      <table>
+        <tr><th>Gate</th><th>Action</th></tr>
+        <tr><td><span class="hl">12 NM</span></td><td>Flaps 1, 0.5 dots on glide</td></tr>
+        <tr><td><span class="hl">6 NM</span></td><td>Flaps 2</td></tr>
+        <tr><td><span class="hl">5 NM</span></td><td>Gear down</td></tr>
+        <tr><td><span class="hl">4–5 NM</span></td><td>Flaps 3 → Full, stabilised by 1,000 ft IMC / 500 ft VMC</td></tr>
+      </table>
+      <hr class="sep">
+      <div class="card-title">Holding Entry Decision (3 sectors)</div>
+      <table>
+        <tr><th>Sector</th><th>Entry Type</th></tr>
+        <tr><td>Within 70° of inbound (same side)</td><td>Direct entry</td></tr>
+        <tr><td>Opposite side, within 110° of outbound</td><td>Parallel entry</td></tr>
+        <tr><td>Remaining sector</td><td>Teardrop (offset) entry</td></tr>
+      </table>
+      <div class="alert alert-blue" style="margin-top:8px">Holding: up to FL140 = 1 min legs; above FL140 = 1.5 min legs. Max holding speeds: ≤FL140 230kt, FL140–200 240kt, FL200–340 265kt, above FL340 M0.83.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Situational Emergency Handling — Sim Scenario Framework</div>
+      <table style="font-size:11px">
+        <tr><th>Scenario</th><th>First 3 Actions</th></tr>
+        <tr><td>Any emergency</td><td><span class="hl-red">1) Fly aircraft</span> 2) QRH/Memory items 3) Communicate (ATC + crew)</td></tr>
+        <tr><td>Engine fire</td><td>FIRE warning → ENG FIRE checklist → consider diversion/ditching</td></tr>
+        <tr><td>Rapid decompression (bang)</td><td>Masks on → dive to 10,000ft (or MSA) → MAYDAY to ATC</td></tr>
+        <tr><td>Smoke in cockpit</td><td>Masks on → identify source → SMOKE checklist → divert</td></tr>
+        <tr><td>Engine failure at V1</td><td>Continue T/O → EFATO memory items → OEI climb profile</td></tr>
+        <tr><td>Captain incapacitation</td><td>Aviate → advise ATC + cabin crew → prepare OEI/single pilot landing</td></tr>
+        <tr><td>GPWS/EGPWS warning</td><td>MAX THRUST → PITCH UP → gear/flaps up → terrain clearance</td></tr>
+        <tr><td>TCAS RA</td><td>Follow RA IMMEDIATELY — do not wait for ATC. Report deviation after.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SUB-HEADER: TECHNICAL Q&A -->
+  <div style="background:#fff0f0;border-left:5px solid #e63946;padding:10px 18px;margin:22px 0 14px;border-radius:4px;font-size:13px;font-weight:700;color:#c1121f;letter-spacing:0.5px;">
+    📚 TECHNICAL Q&amp;A — Selection Exam Topics (Air Law, Meteo, Performance, AGK, Nav, Instruments, HPL)
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Air Law / OPS — Key Selection Facts</div>
+      <table style="font-size:11px">
+        <tr><th>Topic</th><th>Answer</th></tr>
+        <tr><td>Runway edge lights colour</td><td>White (yellow last 600m)</td></tr>
+        <tr><td>Wake cat H (Heavy) MTOW</td><td>&gt;136,000 kg</td></tr>
+        <tr><td>Wake cat M (Medium) MTOW</td><td>7,000–136,000 kg</td></tr>
+        <tr><td>Wingspan cat E</td><td>52–65 m</td></tr>
+        <tr><td>RVSM vertical separation</td><td>1,000 ft (FL290–FL410)</td></tr>
+        <tr><td>Squawk comms failure</td><td>7600</td></tr>
+        <tr><td>Squawk emergency</td><td>7700</td></tr>
+        <tr><td>Squawk hijack</td><td>7500</td></tr>
+        <tr><td>Emergency radio frequency</td><td>121.5 MHz (civil) / 243 MHz (military)</td></tr>
+        <tr><td>Commander recency</td><td>3 T/Os + 3 landings in last 90 days</td></tr>
+        <tr><td>CAT I ALS</td><td>900m centreline lights + crossbar at 300m</td></tr>
+        <tr><td>PAPI</td><td>Precision Approach Path Indicator</td></tr>
+        <tr><td>IFR comms failure IMC — land within</td><td>30 min of ETA or last EAT</td></tr>
+        <tr><td>Max holding speed ≤FL140</td><td>230 kt</td></tr>
+        <tr><td>Wet runway landing distance factor (no data)</td><td>+15%</td></tr>
+        <tr><td>Planning minima CATII alternate</td><td>CAT I RVR</td></tr>
+        <tr><td>Blue taxi lights name</td><td>Taxi edge lights</td></tr>
+        <tr><td>Displaced threshold — what it means</td><td>T/O permitted; landing NOT permitted from that area</td></tr>
+        <tr><td>CL lights alternating red/white → runway remaining</td><td>900 m</td></tr>
+        <tr><td>CL lights all red → runway remaining</td><td>300 m</td></tr>
+        <tr><td>Rocking wings + flashing nav lights</td><td>Intercepted — follow me</td></tr>
+        <tr><td>Straight-in NPA acceptable angle</td><td>≤ 30° from centreline</td></tr>
+        <tr><td>Approach separation H–L (in trail)</td><td>6 NM</td></tr>
+        <tr><td>Approach separation H–M</td><td>5 NM / 2 min</td></tr>
+        <tr><td>Dep separation H–M same position</td><td>2 min</td></tr>
+        <tr><td>NADP 1</td><td>Reduce thrust at 800 ft, maintain flaps, climb to 3,000 ft, then clean up</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Meteorology — Key Selection Q&amp;A</div>
+      <table style="font-size:11px">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>Cloud indicating turbulence</td><td>Altocumulus lenticularis</td></tr>
+        <tr><td>Strongest turbulence in polar jet stream</td><td>North of the core (cold air side)</td></tr>
+        <tr><td>Polar jet strongest season (NH)</td><td>Winter</td></tr>
+        <tr><td>Tropopause highest/lowest</td><td>Highest at equator; lowest at poles</td></tr>
+        <tr><td>Highest thunderstorm probability</td><td>At (and just ahead of) cold front; also ITCZ</td></tr>
+        <tr><td>Squall lines found</td><td>In front of an active cold front</td></tr>
+        <tr><td>ISA temp formula</td><td>15 − (2 × altitude in 1,000 ft) °C</td></tr>
+        <tr><td>DALR / SALR</td><td>DALR = 3°C/1,000 ft; SALR ≈ 1.5°C/1,000 ft (variable)</td></tr>
+        <tr><td>Cold temp correction formula</td><td>4 × alt (thousands ft) × |ΔT from ISA| = correction (ft)</td></tr>
+        <tr><td>True altitude formula</td><td>Indicated alt + (ISA deviation × alt/1,000 × 4)</td></tr>
+        <tr><td>CAVOK conditions</td><td>Vis ≥10km, no cloud below 5,000ft AAL or MSA, no CB/TCu, no wx</td></tr>
+        <tr><td>VMC visibility minimum</td><td>5 km</td></tr>
+        <tr><td>Ceiling definition</td><td>Lowest BKN or OVC layer</td></tr>
+        <tr><td>Radiation fog forms when</td><td>Cloudless night, moist calm air, surface cools below dew point</td></tr>
+        <tr><td>Advection fog</td><td>Warm moist air over cooler surface; day or night, land or sea</td></tr>
+        <tr><td>Temperature inversion hazards</td><td>Freezing rain, fog, reduced vis, windshear, trapped pollution</td></tr>
+        <tr><td>Weather radar — what it doesn't show</td><td>Clear Air Turbulence (CAT)</td></tr>
+        <tr><td>Radar colours</td><td>Green=light rain; Amber=moderate; Red=heavy; Purple=severe/turb</td></tr>
+        <tr><td>Hail in CB at temperate latitudes</td><td>Ground to FL400</td></tr>
+        <tr><td>Warm front clouds</td><td>Ci → Cs → As → Ns (from ahead to front)</td></tr>
+        <tr><td>Fohn wind</td><td>Dry warm downslope wind; leeward side of mountain</td></tr>
+        <tr><td>METAR SN / BR / GR</td><td>Snow / Mist / Hail</td></tr>
+        <tr><td>QFE below sea level vs QNH</td><td>QFE &gt; QNH (airport below sea level)</td></tr>
+        <tr><td>Virga (fallstreaks)</td><td>Precipitation evaporating before reaching the ground</td></tr>
+        <tr><td>Clear ice forms from</td><td>Large supercooled water droplets (e.g. freezing rain)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:14px">
+    <div class="card">
+      <div class="card-title">Performance — Key Selection Q&amp;A</div>
+      <table style="font-size:11px">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>TODA =</td><td>Runway + Clearway</td></tr>
+        <tr><td>ASDA =</td><td>Runway + Stopway</td></tr>
+        <tr><td>Balanced field</td><td>TODA = ASDA (clearway end = stopway end)</td></tr>
+        <tr><td>Balanced V1</td><td>Same distance to stop OR reach 35ft screen height</td></tr>
+        <tr><td>V1 definition</td><td>Maximum speed at which RTO must be initiated</td></tr>
+        <tr><td>V2 definition</td><td>Take-off safety speed; must be ≥1.13×Vs1g; reached at screen height</td></tr>
+        <tr><td>Vref</td><td>1.23 × Vs1g (or 1.3 × Vs0)</td></tr>
+        <tr><td>Dry runway screen height</td><td>35 ft</td></tr>
+        <tr><td>Wet runway screen height</td><td>15 ft</td></tr>
+        <tr><td>Max headwind used in calculations</td><td>50% of headwind component</td></tr>
+        <tr><td>Min tailwind used</td><td>150% of tailwind component</td></tr>
+        <tr><td>Dry runway landing factor</td><td>Actual LD × 1.67 for dispatch</td></tr>
+        <tr><td>Wet runway LD factor (no data)</td><td>+15% to dry LD</td></tr>
+        <tr><td>2nd segment climb gradient (twin jet)</td><td>≥ 2.4%</td></tr>
+        <tr><td>Missed approach gradient (PANS-OPS)</td><td>2.5% (standard)</td></tr>
+        <tr><td>PDG (standard Procedure Design Gradient)</td><td>3.3%</td></tr>
+        <tr><td>Clearway max slope</td><td>≤ 1.25% upward</td></tr>
+        <tr><td>Max clearway used in TODA calc</td><td>Half of TORA</td></tr>
+        <tr><td>Long Range Cruise (LRC)</td><td>Speed giving 99% of max fuel mileage</td></tr>
+        <tr><td>Absolute ceiling</td><td>Rate of climb = 0</td></tr>
+        <tr><td>Load factor at 45° bank</td><td>1.41 G</td></tr>
+        <tr><td>Vs increase at 25° bank</td><td>×1.05 (5% increase)</td></tr>
+        <tr><td>Net flight path (twin)</td><td>Gross flight path − 0.8%</td></tr>
+        <tr><td>Cost Index</td><td>CI = Time cost / Fuel cost; CI=0 = max fuel saving; high CI = fast</td></tr>
+        <tr><td>Forward CG effect</td><td>↑ stability, ↑ stall speed, ↑ stick forces, ↓ range</td></tr>
+        <tr><td>Aft CG effect</td><td>↓ stability, ↓ stall speed, ↑ manoeuvrability, risk of overcontrol</td></tr>
+        <tr><td>Flex/derated T/O trip fuel effect</td><td>Increases trip fuel (lower initial ROC, longer to optimal altitude)</td></tr>
+        <tr><td>Reverse thrust at low speed (&lt;70kt) risk</td><td>Self-ingestion of exhaust + FOD ingestion + reduced fwd visibility</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Aerodynamics / PoF — Key Selection Q&amp;A</div>
+      <table style="font-size:11px">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>Stall recovery</td><td>Reduce AoA (stick forward) + increase thrust</td></tr>
+        <tr><td>Critical engine — jet aircraft</td><td>No critical engine (symmetric thrust arms)</td></tr>
+        <tr><td>Critical engine — twin piston (CW rotation)</td><td>Left engine (right engine creates larger moment)</td></tr>
+        <tr><td>Swept wings advantage</td><td>Higher Mcrit; less prone to turbulence; lower induced drag</td></tr>
+        <tr><td>Mcrit</td><td>Speed at which airflow over some part of wing first reaches M1.0</td></tr>
+        <tr><td>High tail advantage/risk</td><td>Avoids wing wake // prone to deep (super) stall</td></tr>
+        <tr><td>Wingtip vortices</td><td>High-press air (below) escapes to low-press (above) at wingtip → induced drag</td></tr>
+        <tr><td>Winglets reduce</td><td>Induced drag by disrupting tip vortex formation</td></tr>
+        <tr><td>Mach number formula</td><td>TAS ÷ LSS (local speed of sound)</td></tr>
+        <tr><td>LSS with altitude increase</td><td>Decreases (LSS = 39 × √T in Kelvin)</td></tr>
+        <tr><td>Constant Mach climb → TAS</td><td>Decreases (temperature falls → LSS falls → same Mach = lower TAS)</td></tr>
+        <tr><td>Constant CAS climb → Mach</td><td>Increases (TAS increases; LSS decreases)</td></tr>
+        <tr><td>Lift × 2 speed at same AoA?</td><td>4× more lift (Lift ∝ V²)</td></tr>
+        <tr><td>Aspect ratio definition</td><td>Wingspan² ÷ wing area (or span ÷ mean chord)</td></tr>
+        <tr><td>Centre of pressure</td><td>Point where total aerodynamic force acts; moves with AoA</td></tr>
+        <tr><td>Angle of incidence</td><td>Fixed angle between chord line and aircraft longitudinal axis</td></tr>
+        <tr><td>Mean chord line</td><td>Wing area ÷ wingspan</td></tr>
+        <tr><td>Aquaplaning formula</td><td>Speed = 9 × √(tyre pressure in PSI)</td></tr>
+        <tr><td>What causes icing problems?</td><td>↑ weight, ↓ lift, ↑ drag, disrupts boundary layer, blocks pitot</td></tr>
+        <tr><td>Trim runaway — action</td><td>Disconnect electric trim; trim manually</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:14px">
+    <div class="card">
+      <div class="card-title">Navigation &amp; Instruments — Key Selection Q&amp;A</div>
+      <table style="font-size:11px">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>Compass turning error max</td><td>Maximum at poles; greatest on N/S headings in NH</td></tr>
+        <tr><td>Acceleration error (NH, East heading)</td><td>Apparent turn North</td></tr>
+        <tr><td>Deceleration error (NH, East heading)</td><td>Apparent turn South</td></tr>
+        <tr><td>Grid MORA clearance ≤5,000ft MSL</td><td>1,000 ft obstacle clearance</td></tr>
+        <tr><td>Grid MORA clearance &gt;5,000ft MSL</td><td>2,000 ft obstacle clearance</td></tr>
+        <tr><td>MORA coverage width each side</td><td>10 NM each side of airway + 10 NM radius at ends</td></tr>
+        <tr><td>RVSM: 1,000ft separation above FL290?</td><td>Yes — requires approved altimeters, auto-pilot, ADS-B</td></tr>
+        <tr><td>Non-RVSM above FL290</td><td>2,000 ft vertical separation</td></tr>
+        <tr><td>Minimum descent gradient final approach</td><td>3.0° / 5.2%</td></tr>
+        <tr><td>Max descent gradient Cat C/D/E</td><td>3.5° / 6.1%</td></tr>
+        <tr><td>5 approach segments</td><td>Arrival (STAR) → Initial → Intermediate → Final → Missed Approach</td></tr>
+        <tr><td>TCAS modes</td><td>STBY / TA / TA+RA</td></tr>
+        <tr><td>TCAS information source</td><td>Other aircraft transponder signals (Mode C/S)</td></tr>
+        <tr><td>EGPWS vs GPWS difference</td><td>EGPWS adds GPS + terrain database; GPWS uses radio altimeter only</td></tr>
+        <tr><td>INS/IRS key components</td><td>Accelerometers (velocity) + Gyroscopes (attitude/heading)</td></tr>
+        <tr><td>VOR frequency band</td><td>108–118 MHz VHF; 108–112 shared with ILS (even 100kHz = VOR)</td></tr>
+        <tr><td>Marker beacon frequencies audio</td><td>OM 400Hz / MM 1,300Hz / IM 3,000Hz; carrier 75MHz</td></tr>
+        <tr><td>DME slant range error</td><td>Largest directly overhead; = altitude ÷ 6,000 NM approx</td></tr>
+        <tr><td>Alternate static source effect on ASI</td><td>Over-reads (cockpit pressure lower than ambient)</td></tr>
+        <tr><td>Glide slope intercept distance formula</td><td>Height (ft) ÷ (GS° × 100) = distance in NM</td></tr>
+        <tr><td>3° glide: ROD formula</td><td>GS × 5 = ROD ft/min (approx); or GS (kt) × 300/60</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">AGK / HPL — Key Selection Q&amp;A</div>
+      <table style="font-size:11px">
+        <tr><th>Question</th><th>Answer</th></tr>
+        <tr><td>Bypass ratio definition</td><td>Cold (bypass) air mass flow ÷ hot (HP compressor) air mass flow</td></tr>
+        <tr><td>Jet A freeze point / availability</td><td>−40°C; USA only; high flash point, low volatility</td></tr>
+        <tr><td>Jet A-1 freeze point</td><td>−47°C; international standard commercial fuel</td></tr>
+        <tr><td>Cabin air source</td><td>LP compressor bleed + HP if needed</td></tr>
+        <tr><td>FADEC power source in flight</td><td>Engine-mounted FADEC power sources (self-powered)</td></tr>
+        <tr><td>Chemical O₂ vs gaseous — pax advantage</td><td>Easier maintenance + reduced explosion risk</td></tr>
+        <tr><td>Cross-feed fuel system purpose</td><td>Feed any engine from any tank; balance fuel distribution</td></tr>
+        <tr><td>Stringers purpose in fuselage</td><td>Resist longitudinal compressive loads; stiffen skin</td></tr>
+        <tr><td>CSD temp in red arc — action</td><td>Disconnect immediately; generator not available for rest of flight</td></tr>
+        <tr><td>De-icing fluid types</td><td>Type I (de-ice, low viscosity); Type II/IV (anti-ice, high viscosity)</td></tr>
+        <tr><td>Two-stage de/anti-ice holdover start</td><td>Beginning of second stage (anti-ice application)</td></tr>
+        <tr><td>Hypoxia definition</td><td>Lack of O₂ to body tissues → impaired mental and motor function</td></tr>
+        <tr><td>Most dangerous hypoxia symptom</td><td>Euphoria + impaired judgement (pilot doesn't realise)</td></tr>
+        <tr><td>Hyperventilation effect</td><td>↓ CO₂ → ↓ blood acidity → ↓ O₂ diffusion into cells; symptoms similar to hypoxia</td></tr>
+        <tr><td>Decompression sickness cause</td><td>N₂ bubbles from over-saturated tissues (rapid pressure decrease)</td></tr>
+        <tr><td>Somatogravic illusion</td><td>Rapid acceleration → feels like pitch-up → pilot pitches down</td></tr>
+        <tr><td>Wide runway approach illusion</td><td>Appears closer to threshold → flares early → lands long</td></tr>
+        <tr><td>Narrow runway approach illusion</td><td>Appears further → flares late → lands short or undershoots</td></tr>
+        <tr><td>Upslope runway illusion</td><td>Pilot feels high → may land short</td></tr>
+        <tr><td>Downslope runway illusion</td><td>Pilot feels low → may land long</td></tr>
+        <tr><td>Most accidents caused by lack of</td><td>Good judgment / decision-making</td></tr>
+        <tr><td>Normal breathing rate adult</td><td>10–15 breaths per minute</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SUB-HEADER: MATH PROBLEMS -->
+  <div style="background:#fff0f0;border-left:5px solid #e63946;padding:10px 18px;margin:22px 0 14px;border-radius:4px;font-size:13px;font-weight:700;color:#c1121f;letter-spacing:0.5px;">
+    🔢 MATH PROBLEMS — Selection Mental Arithmetic &amp; Quick Calculations
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Mental Maths — Key Formulae to Know</div>
+      <div class="formula">Crosswind = Wind speed × sin(angle between wind and runway)</div>
+      <div class="formula">Headwind = Wind speed × cos(angle between wind and runway)</div>
+      <div class="formula" style="margin-top:4px">GS = TAS ± wind (head/tail component)</div>
+      <div class="formula">ROD (3° glide) = GS (kt) × 5 ft/min &nbsp;|&nbsp; or GS × 300 ÷ 60</div>
+      <div class="formula">ROC required = Alt to climb (ft) ÷ time (min) &nbsp;|&nbsp; or (Alt ÷ Dist) × GS ÷ 60</div>
+      <div class="formula">Mach = TAS ÷ LSS &nbsp;|&nbsp; LSS = 39 × √T(K) &nbsp;|&nbsp; ISA: LSS ≈ 661 kt at SL</div>
+      <div class="formula">TAS = CAS × √(ρ₀ ÷ ρ) &nbsp;|&nbsp; approx: +2% per 1,000ft</div>
+      <div class="formula">QFE = QNH − (elevation ÷ 30) hPa &nbsp;|&nbsp; (1 hPa ≈ 30ft)</div>
+      <div class="formula">Cold temp correction = 4 × Alt (thousands ft) × |ΔT from ISA|</div>
+      <div class="formula">Glide slope intercept dist (NM) = Height (ft) ÷ (angle° × 100)</div>
+      <div class="formula">Departure (NM) = ΔLong(°) × 60 × cos(latitude)</div>
+      <div class="formula">Climb gradient (%) = (Thrust − Drag) ÷ Weight × 100</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Worked Example Problems</div>
+      <div style="font-size:11.5px">
+
+        <div style="background:#e8f0fb;padding:8px;border-radius:4px;margin-bottom:8px">
+          <strong>GS from TAS + wind:</strong> TAS 450kt, tailwind 30kt → GS = 480kt
+        </div>
+
+        <div style="background:#e8f0fb;padding:8px;border-radius:4px;margin-bottom:8px">
+          <strong>Fuel endurance:</strong> 3,000kg total − 800kg reserve = 2,200kg usable ÷ 500kg/hr = <strong>4.4 hrs</strong>
+        </div>
+
+        <div style="background:#e8f0fb;padding:8px;border-radius:4px;margin-bottom:8px">
+          <strong>Mach number:</strong> CAS 250kt at FL200 (LSS 590kt) → Mach = 250 ÷ 590 = <strong>0.42</strong>; TAS = CAS × √(1.225÷0.6609) = 250 × 1.36 = <strong>340kt</strong>
+        </div>
+
+        <div style="background:#e8f0fb;padding:8px;border-radius:4px;margin-bottom:8px">
+          <strong>Crosswind RWY 32, wind 350/30:</strong> Δ = 350−320 = 30° → XW = 30 × sin30° = 30 × 0.5 = <strong>15kt</strong>
+        </div>
+
+        <div style="background:#e8f0fb;padding:8px;border-radius:4px;margin-bottom:8px">
+          <strong>ROC needed:</strong> Climb 20,000ft in 50NM at GS 300kt → time = 50÷300 × 60 = 10min → ROC = 20,000÷10 = <strong>2,000 ft/min</strong>
+        </div>
+
+        <div style="background:#e8f0fb;padding:8px;border-radius:4px;margin-bottom:8px">
+          <strong>Fuel with contingency:</strong> 200kg/hr × 4hr = 800kg × 1.15 = <strong>920kg total</strong>
+        </div>
+
+        <div style="background:#e8f0fb;padding:8px;border-radius:4px;margin-bottom:8px">
+          <strong>Traffic load:</strong> MZFM 65,500 − DOM (44,800 + 1,240 + 1,060 = 47,100) = <strong>18,400kg max</strong>
+        </div>
+
+        <div style="background:#e8f0fb;padding:8px;border-radius:4px;margin-bottom:8px">
+          <strong>ISA temp at FL320:</strong> 15 − (2 × 32) = 15 − 64 = <strong>−49°C</strong>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- end selection section -->
+
 
 </div><!-- end container -->
 
